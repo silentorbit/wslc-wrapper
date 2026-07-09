@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="WslcGenerator/WslcGenerator.csproj" />
+  <Project Path="WslcTest/WslcTest.csproj" />
+  <Project Path="WslcWrapper/WslcWrapper.csproj" />
+</Solution>
