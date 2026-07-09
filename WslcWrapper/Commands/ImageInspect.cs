@@ -4,7 +4,7 @@
 /// Inspect images.
 /// Usage: wslc image inspect [<options>] <image>
 /// </summary>
-public partial class ImageInspect : WslcCommand
+public partial class ImageInspect : WslcCommand<List<ImageInspecJson>>
 {
     public required string Image { get; set; }
 

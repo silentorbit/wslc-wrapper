@@ -4,7 +4,7 @@
 /// Direct map of:
 /// wslc container list --format json
 /// </summary>
-public class ContainerInfo
+public class ContainerListJson
 {
     public UInt64 CreatedAt { get; set; }
     public required string Id { get; set; }

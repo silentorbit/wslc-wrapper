@@ -10,7 +10,7 @@
 	<PropertyGroup>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>SilentOrbit.WSLC</PackageId>
-		<Version>0.0.8</Version>
+		<Version>0.0.9</Version>
 		<Authors>hultqvist</Authors>
 		<Company>SilentOrbit</Company>
 		<Description>Wrapper for wslc offering strong typed interface to generate and execute wslc.exe to manager your containers.</Description>

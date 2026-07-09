@@ -78,6 +78,7 @@ class CommandGenerator
 
         if (ReturnMap.TryGetValue(string.Join(" ", cmd.Command), out var returnType))
             returnType = $"<{returnType}>";
+        var formatInterface = (cmd.Options.Any(o => o.Key == "--format")) ? ", IFormatJson" : null;
 
         code.AppendLine("namespace SilentOrbit.WSLC.Commands;");
         code.AppendLine();
@@ -85,7 +86,7 @@ class CommandGenerator
         foreach (var summaryLine in cmd.Summary)
             code.AppendLine($"/// {summaryLine}");
         code.AppendLine("/// </summary>");
-        code.AppendLine($"public partial class {cmd.ClassName} : WslcCommand{returnType}");
+        code.AppendLine($"public partial class {cmd.ClassName} : WslcCommand{returnType}{formatInterface}");
         code.AppendLine("{");
 
         //Arguments

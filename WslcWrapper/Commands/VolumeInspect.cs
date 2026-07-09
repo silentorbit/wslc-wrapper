@@ -4,7 +4,7 @@
 /// Display detailed information on one or more volumes.
 /// Usage: wslc volume inspect [<options>] <volume-name>
 /// </summary>
-public partial class VolumeInspect : WslcCommand
+public partial class VolumeInspect : WslcCommand<List<VolumeInspectJson>>
 {
     public required string VolumeName { get; set; }
 

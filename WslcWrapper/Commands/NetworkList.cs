@@ -4,7 +4,7 @@
 /// Lists all networks in the session.
 /// Usage: wslc network list [<options>]
 /// </summary>
-public partial class NetworkList : WslcCommand
+public partial class NetworkList : WslcCommand, IFormatJson
 {
     public NetworkList() { }
 

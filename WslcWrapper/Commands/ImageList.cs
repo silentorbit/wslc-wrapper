@@ -4,7 +4,7 @@
 /// Lists images.
 /// Usage: wslc image list [<options>]
 /// </summary>
-public partial class ImageList : WslcCommand<List<ImageInfo>>
+public partial class ImageList : WslcCommand<List<ImageListJson>>, IFormatJson
 {
     public ImageList() { }
 

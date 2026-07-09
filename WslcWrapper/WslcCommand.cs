@@ -7,9 +7,12 @@
 public abstract class WslcCommand<TReturn> : WslcCommand
     where TReturn : class
 {
-    public TReturn Run()
+    public TReturn RunJson()
     {
-        var result = RunRaw();
+        if (this is IFormatJson format)
+            format.Format = "json";
+
+        var result = Run();
 
         result.ExpectOK();
         return JsonSerializer.Deserialize<TReturn>(result.StdOut)
@@ -33,7 +36,7 @@ public abstract class WslcCommand
     /// </summary>
     public bool Help { get; set; }
 
-    public WslcResult RunRaw()
+    public WslcResult Run()
     {
         var args = BuildArgs();
         return WslcExe.Run(args);

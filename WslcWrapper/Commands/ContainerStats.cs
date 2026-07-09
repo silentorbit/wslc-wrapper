@@ -4,7 +4,7 @@
 /// Display a snapshot of a running container's resource usage: CPU, memory, network I/O, block I/O, and PIDs.
 /// Usage: wslc container stats [<options>] [<container-id>]
 /// </summary>
-public partial class ContainerStats : WslcCommand
+public partial class ContainerStats : WslcCommand<List<ContainerStatsJson>>, IFormatJson
 {
     public string? ContainerID { get; set; }
 

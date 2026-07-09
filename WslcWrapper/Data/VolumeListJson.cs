@@ -1,0 +1,12 @@
+﻿namespace SilentOrbit.WSLC.Data;
+
+public class VolumeListJson
+{
+    public required string Driver { get; set; }
+    public required string Name { get; set; }
+
+#if !DEBUG
+    [JsonExtensionData]
+    public Dictionary<string, JsonElement>? UnmappedData { get; set; }
+#endif
+}
