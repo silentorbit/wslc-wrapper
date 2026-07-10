@@ -8,10 +8,11 @@
 
 		<RootNamespace>SilentOrbit.WSLC</RootNamespace>
 		<LangVersion>preview</LangVersion>
+		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="SilentOrbit.SilentDisk" Version="0.10.1" />
+		<PackageReference Include="SilentOrbit.SilentDisk" Version="0.10.1" />
 	</ItemGroup>
 
 </Project>
