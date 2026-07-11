@@ -5,6 +5,10 @@ A wrapper for the wslc.exe command.
 
 Offers a stronly typed interface to generate commands to manage containers on Windows.
 
+# Usage
+
+Reference the WslcWrapper.csproj or use the NuGet package [SilentOrbit.WSLC](https://www.nuget.org/packages/SilentOrbit.WSLC).
+
 # Sample
 
 ```C#
