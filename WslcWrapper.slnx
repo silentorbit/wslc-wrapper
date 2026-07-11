@@ -1,7 +1,10 @@
 <Solution>
-  <Folder Name="/Solution Items/">
+  <Folder Name="/.github/" />
+  <Folder Name="/.github/workflows/">
     <File Path=".github/workflows/nuget.yaml" />
     <File Path=".github/workflows/test.yaml" />
+  </Folder>
+  <Folder Name="/Solution Items/">
     <File Path="LICENSE" />
     <File Path="README.md" />
   </Folder>
