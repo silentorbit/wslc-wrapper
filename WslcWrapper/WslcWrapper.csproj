@@ -10,19 +10,31 @@
 	<PropertyGroup>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>SilentOrbit.WSLC</PackageId>
-		<Version>0.0.10</Version>
+		<Version>0.0.11</Version>
 		<Authors>hultqvist</Authors>
 		<Company>SilentOrbit</Company>
-		<Description>Wrapper for wslc offering strong typed interface to generate and execute wslc.exe to manager your containers.</Description>
+		<Description>Wrapper for wslc offering strong typed interface to generate and execute wslc.exe to manage your containers.</Description>
 		<PackageTags>utility;helper;dotnet;wsl;wslc</PackageTags>
 
 		<RepositoryUrl>https://github.com/silentorbit/wslc-wrapper</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+
+		<!-- Generate the secondary symbol package -->
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+		<!-- Source Link -->
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+		
+		<!-- Intellisense support -->
+		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="../README.md" Pack="true" PackagePath="\"/>
+		<None Include="../README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 	
 </Project>
