@@ -13,16 +13,16 @@ class CommandGenerator
     /// <summary>
     /// Key: Argument or Option name
     /// </summary>
-    public Dictionary<string, string> TypeMap { get; set; } = new();
+    public Dictionary<string, string> TypeMap { get; set; } = [];
     /// <summary>
     /// Key: Argument or Option name
     /// </summary>
-    public Dictionary<string, string> NameMap { get; set; } = new();
+    public Dictionary<string, string> NameMap { get; set; } = [];
     /// <summary>
     /// Key: Command chain: "image list"
     /// Value: TReturn for WslcArguments<TReturn>
     /// </summary>
-    public Dictionary<string, string> ReturnMap { get; set; } = new();
+    public Dictionary<string, string> ReturnMap { get; set; } = [];
 
     #region Load/Save Config
 
@@ -50,13 +50,15 @@ class CommandGenerator
         return gen;
     }
 
+    static readonly JsonSerializerOptions SaveJsonOptions = new()
+    {
+        WriteIndented = true,
+        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+    };
+
     public void Save()
     {
-        var json = JsonSerializer.Serialize(this, new JsonSerializerOptions()
-        {
-            WriteIndented = true,
-            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-        });
+        var json = JsonSerializer.Serialize(this, SaveJsonOptions);
         generatorFile.WriteAllText(json);
     }
 
@@ -96,7 +98,7 @@ class CommandGenerator
             var n = GetPropertyName(a);
             if (t.StartsWith("List<"))
                 code.AppendLine($"public {t} {n} {{ get; set; }} = [];");
-            else if (t.EndsWith("?"))
+            else if (t.EndsWith('?'))
                 code.AppendLine($"public {t} {n} {{ get; set; }}");
             else
                 code.AppendLine($"public required {t} {n} {{ get; set; }}");
@@ -213,7 +215,7 @@ class CommandGenerator
 
             if (t.StartsWith("List<") || t.StartsWith("IList<"))
                 yield return $"params {t} {n}";
-            else if (t.EndsWith("?"))
+            else if (t.EndsWith('?'))
                 yield return $"{t} {n} = null";
             else
                 yield return $"{t} {n}";
@@ -257,6 +259,7 @@ class CommandGenerator
     /// <param name="a"></param>
     /// <returns></returns>
     bool IsOptional(CommandData cmd, Argument a)
+    static bool IsOptional(CommandData cmd, Argument a)
     {
         //All options are optional
         if (a.Key[0] == '-')

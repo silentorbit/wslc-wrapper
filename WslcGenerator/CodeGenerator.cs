@@ -8,13 +8,13 @@ class CodeGenerator
     readonly StringBuilder s = new();
     public override string ToString()
     {
-        Debug.Assert(indentCount == 0);
+        Debug.Assert(IndentCount == 0);
         return s.ToString();
     }
 
-    int indentCount
+    int IndentCount
     {
-        get => field;
+        get;
         set
         {
             Debug.Assert(field - 1 <= value && value <= field + 1);
@@ -35,25 +35,25 @@ class CodeGenerator
     {
         if (line == "}")
         {
-            indentCount -= 1;
+            IndentCount -= 1;
         }
 
         s.AppendLine($"{indent}{line}");
 
         if (indentSingleLine)
         {
-            indentCount -= 1;
+            IndentCount -= 1;
             indentSingleLine = false;
         }
 
         if (line == "{")
         {
-            indentCount += 1;
+            IndentCount += 1;
         }
         if (line.StartsWith("if ") || line.StartsWith("foreach "))
         {
             indentSingleLine = true;
-            indentCount += 1;
+            IndentCount += 1;
         }
 
     }
