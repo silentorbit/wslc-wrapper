@@ -36,6 +36,19 @@ public partial class ImageImport : WslcCommand
     }
 
     /// <summary><![CDATA[
+    /// Imports the contents of a tarball to create a filesystem image. Optionally tag the image with a repository and tag name.
+    /// Usage: wslc image import [<options>] <file> [<image>]
+    /// ]]></summary>
+    /// <param name="file">File or - to read from stdin</param>
+    /// <param name="image">Image name</param>
+    [SetsRequiredMembers]
+    public ImageImport(string file, IImageID image)
+    {
+        this.File = file;
+        this.Image = image.ImageID;
+    }
+
+    /// <summary><![CDATA[
     /// Do not truncate output
     /// --no-trunc
     /// ]]></summary>

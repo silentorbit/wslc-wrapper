@@ -29,6 +29,17 @@ public partial class ImageRemove : WslcCommand
     }
 
     /// <summary><![CDATA[
+    /// Removes images.
+    /// Usage: wslc image remove [<options>] <image>
+    /// ]]></summary>
+    /// <param name="image">Image name</param>
+    [SetsRequiredMembers]
+    public ImageRemove(IImageID image)
+    {
+        this.Image = image.ImageID;
+    }
+
+    /// <summary><![CDATA[
     /// Delete images even if they are being used
     /// --force
     /// ]]></summary>

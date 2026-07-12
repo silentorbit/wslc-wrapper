@@ -43,6 +43,21 @@ public partial class ContainerExec : WslcCommand
     }
 
     /// <summary><![CDATA[
+    /// Executes a command in a running container.
+    /// Usage: wslc container exec [<options>] <container-id> <command> [<arguments>...]
+    /// ]]></summary>
+    /// <param name="container">Container ID</param>
+    /// <param name="command">The command to run</param>
+    /// <param name="arguments">Arguments to pass to the command being executed inside the container</param>
+    [SetsRequiredMembers]
+    public ContainerExec(IContainerID container, string command, params IList<string> arguments)
+    {
+        this.ContainerID = container.ContainerID;
+        this.Command = command;
+        this.Arguments = arguments;
+    }
+
+    /// <summary><![CDATA[
     /// Run container in detached mode
     /// --detach
     /// ]]></summary>

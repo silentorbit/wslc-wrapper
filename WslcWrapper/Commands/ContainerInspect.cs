@@ -28,6 +28,17 @@ public partial class ContainerInspect : WslcCommand<List<ContainerInspectItem>>
         this.ContainerID = containerid;
     }
 
+    /// <summary><![CDATA[
+    /// Display detailed information about a container.
+    /// Usage: wslc container inspect [<options>] <container-id>
+    /// ]]></summary>
+    /// <param name="container">Container ID</param>
+    [SetsRequiredMembers]
+    public ContainerInspect(IContainerID container)
+    {
+        this.ContainerID = container.ContainerID;
+    }
+
     /// <summary>
     /// Return arguments for wslc.exe
     /// </summary>

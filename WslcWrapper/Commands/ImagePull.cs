@@ -28,6 +28,17 @@ public partial class ImagePull : WslcCommand
         this.Image = image;
     }
 
+    /// <summary><![CDATA[
+    /// Pulls images.
+    /// Usage: wslc image pull [<options>] <image>
+    /// ]]></summary>
+    /// <param name="image">Image name</param>
+    [SetsRequiredMembers]
+    public ImagePull(IImageID image)
+    {
+        this.Image = image.ImageID;
+    }
+
     /// <summary>
     /// Return arguments for wslc.exe
     /// </summary>

@@ -3,7 +3,7 @@
 /// <summary>
 /// <see cref="ImageList"/>.<see cref="WslcCommand{T}.RunJson"/>
 /// </summary>
-public class ImageListItem
+public class ImageListItem : IImageID
 {
     public required long Created { get; set; }
     public required string Id { get; set; }
@@ -13,6 +13,9 @@ public class ImageListItem
 
     [JsonIgnore]
     public string RepositoryOrId => Repository ?? Id;
+
+    [JsonIgnore]
+    string IImageID.ImageID => Repository ?? Id;
 
 #if !DEBUG
     [JsonExtensionData]

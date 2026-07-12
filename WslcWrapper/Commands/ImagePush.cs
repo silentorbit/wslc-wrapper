@@ -28,6 +28,17 @@ public partial class ImagePush : WslcCommand
         this.Image = image;
     }
 
+    /// <summary><![CDATA[
+    /// Upload an image to a registry.
+    /// Usage: wslc image push [<options>] <image>
+    /// ]]></summary>
+    /// <param name="image">Image name</param>
+    [SetsRequiredMembers]
+    public ImagePush(IImageID image)
+    {
+        this.Image = image.ImageID;
+    }
+
     /// <summary>
     /// Return arguments for wslc.exe
     /// </summary>

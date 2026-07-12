@@ -28,6 +28,17 @@ public partial class ImageInspect : WslcCommand<List<ImageInspectItem>>
         this.Image = image;
     }
 
+    /// <summary><![CDATA[
+    /// Inspect images.
+    /// Usage: wslc image inspect [<options>] <image>
+    /// ]]></summary>
+    /// <param name="image">Image name</param>
+    [SetsRequiredMembers]
+    public ImageInspect(IImageID image)
+    {
+        this.Image = image.ImageID;
+    }
+
     /// <summary>
     /// Return arguments for wslc.exe
     /// </summary>

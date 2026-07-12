@@ -76,6 +76,8 @@ class CommandGenerator
 
     string GenerateCode(CommandData cmd)
     {
+        SetCodeNames(cmd);
+
         var code = new CodeGenerator();
 
         if (ReturnMap.TryGetValue(string.Join(" ", cmd.Command), out var returnType))
@@ -88,18 +90,16 @@ class CommandGenerator
         code.AppendLine($"public partial class {cmd.ClassName} : WslcCommand{returnType}{formatInterface}");
         code.AppendLine("{");
 
-        //Arguments
+        //Argument properties
         foreach (var a in cmd.Arguments)
         {
-            var t = GetArgumentType(cmd, a);
-            var n = GetPropertyName(a);
             code.AppendSummary(a.Summary);
-            if (t.StartsWith("List<"))
-                code.AppendLine($"public {t} {n} {{ get; set; }} = [];");
-            else if (t.EndsWith('?'))
-                code.AppendLine($"public {t} {n} {{ get; set; }}");
+            if (a.PropertyType.StartsWith("List<"))
+                code.AppendLine($"public {a.PropertyType} {a.PropertyName} {{ get; set; }} = [];");
+            else if (a.PropertyType.EndsWith('?'))
+                code.AppendLine($"public {a.PropertyType} {a.PropertyName} {{ get; set; }}");
             else
-                code.AppendLine($"public required {t} {n} {{ get; set; }}");
+                code.AppendLine($"public required {a.PropertyType} {a.PropertyName} {{ get; set; }}");
             code.AppendLine();
         }
 
@@ -108,35 +108,16 @@ class CommandGenerator
         code.AppendSummary(cmd.Summary);
         code.AppendLine($"public {cmd.ClassName}() {{ }}");
         code.AppendLine();
-        if (cmd.Arguments.Count > 0)
-        {
-            code.AppendSummary(cmd.Summary);
-            foreach (var a in cmd.Arguments)
-            {
-                var n = GetPropertyName(a).ToLowerInvariant();
-                code.AppendParam(n, a.Summary);
-            }
-            code.AppendLine("[SetsRequiredMembers]");
-            code.AppendLine($"public {cmd.ClassName}({string.Join(", ", CtorArgumentEnum(cmd))})");
-            code.AppendLine("{");
-            foreach (var a in cmd.Arguments)
-            {
-                var n = GetPropertyName(a);
-                code.AppendLine($"this.{n} = {n.ToLowerInvariant()};");
-            }
-            code.AppendLine("}");
-            code.AppendLine();
-        }
+        GenerateCtor(code, cmd, cmd.Arguments);
+        GenerateCtor(code, cmd, GetTypedArguments(cmd.Arguments));
 
         //Options
         foreach (var o in cmd.Options)
         {
-            var t = GetArgumentType(cmd, o);
-            var n = GetPropertyName(o);
-            var setNew = t.StartsWith("List<") ? " = [];" : null;
+            var setNew = o.PropertyType.StartsWith("List<") ? " = [];" : null;
 
             code.AppendSummary(o.Summary, o.Key);
-            code.AppendLine($"public {t} {n} {{ get; set; }}{setNew}");
+            code.AppendLine($"public {o.PropertyType} {o.PropertyName} {{ get; set; }}{setNew}");
             code.AppendLine();
         }
 
@@ -147,58 +128,54 @@ class CommandGenerator
         code.AppendLine($"args.AddRange({string.Join(", ", cmd.Command.Select(c => $@"""{c}"""))});");
         foreach (var o in cmd.Options)
         {
-            var t = GetArgumentType(cmd, o);
-            var propertyName = GetPropertyName(o);
-            switch (t)
+            switch (o.PropertyType)
             {
                 case "string":
-                    code.AppendLine($"""args.AddRange("{o.Key}", {propertyName});""");
+                    code.AppendLine($"""args.AddRange("{o.Key}", {o.PropertyName});""");
                     break;
 
                 case "bool":
-                    code.AppendLine($"""args.AddFlag("{o.Key}", {propertyName});""");
+                    code.AppendLine($"""args.AddFlag("{o.Key}", {o.PropertyName});""");
                     break;
                 case "string?":
-                    code.AppendLine($"""args.AddOptional("{o.Key}", {propertyName});""");
+                    code.AppendLine($"""args.AddOptional("{o.Key}", {o.PropertyName});""");
                     break;
                 case "List<string>":
                 case "IList<string>":
-                    code.AppendLine($"""foreach (var v in {propertyName})""");
+                    code.AppendLine($"""foreach (var v in {o.PropertyName})""");
                     code.AppendLine($"""args.AddRange("{o.Key}", v);""");
                     break;
 
                 case "List<PortMap>":
                 case "List<EnvValue>":
                 case "List<VolumeArg>":
-                    code.AppendLine($"""args.AddOptional("{o.Key}", {propertyName});""");
+                    code.AppendLine($"""args.AddOptional("{o.Key}", {o.PropertyName});""");
                     break;
 
                 default:
-                    Debug.Fail(t);
-                    throw new NotImplementedException(t);
+                    Debug.Fail(o.PropertyType);
+                    throw new NotImplementedException(o.PropertyType);
             }
         }
         foreach (var a in cmd.Arguments)
         {
-            var t = GetArgumentType(cmd, a);
-            var propertyName = GetPropertyName(a);
-            switch (t)
+            switch (a.PropertyType)
             {
                 case "IList<string>":
                 case "List<string>":
-                    code.AppendLine($"args.AddRange({propertyName});");
+                    code.AppendLine($"args.AddRange({a.PropertyName});");
                     break;
 
                 case "string?":
-                    code.AppendLine($"args.AddOptional({propertyName});");
+                    code.AppendLine($"args.AddOptional({a.PropertyName});");
                     break;
                 case "string":
-                    code.AppendLine($"args.Add({propertyName});");
+                    code.AppendLine($"args.Add({a.PropertyName});");
                     break;
 
                 default:
-                    Debug.Fail(t);
-                    throw new NotImplementedException(t);
+                    Debug.Fail(a.PropertyType);
+                    throw new NotImplementedException(a.PropertyType);
             }
         }
 
@@ -209,12 +186,69 @@ class CommandGenerator
         return code.ToString();
     }
 
-    IEnumerable<string> CtorArgumentEnum(CommandData cmd)
+    static void GenerateCtor(CodeGenerator code, CommandData cmd, IEnumerable<Argument> arguments)
     {
-        foreach (var a in cmd.Arguments)
+        if (arguments.Any() == false)
+            return;
+
+        code.AppendSummary(cmd.Summary);
+        foreach (var a in arguments)
+            code.AppendParam(a.CtorParameterName, a.Summary);
+
+        code.AppendLine("[SetsRequiredMembers]");
+        code.AppendLine($"public {cmd.ClassName}({string.Join(", ", CtorArgumentEnum(arguments))})");
+        code.AppendLine("{");
+        foreach (var a in arguments)
+            code.AppendLine($"this.{a.PropertyName} = {a.CtorPropertyValue};");
+        code.AppendLine("}");
+        code.AppendLine();
+    }
+
+    static IEnumerable<Argument> GetTypedArguments(IEnumerable<Argument> args)
+    {
+        var hasContainerId = args.Any(a => a.Key == "container-id");
+        var hasImage = args.Any(a => a.Key == "image");
+        if (!hasContainerId && !hasImage)
+            yield break;
+
+        foreach (var a in args)
         {
-            var n = GetPropertyName(a).ToLowerInvariant();
-            var t = GetArgumentType(cmd, a);
+            switch (a.Key)
+            {
+                case "container-id":
+                    yield return new Argument(a.Key, a.Summary)
+                    {
+                        PropertyType = a.PropertyType,
+                        PropertyName = a.PropertyName,
+                        CtorParameterName = "container",
+                        CtorParameterType = "IContainerID",
+                        CtorPropertyValue = "container.ContainerID",
+                    };
+                    break;
+                case "image":
+                    yield return new Argument(a.Key, a.Summary)
+                    {
+                        PropertyType = a.PropertyType,
+                        PropertyName = a.PropertyName,
+                        CtorParameterName = "image",
+                        CtorParameterType = "IImageID",
+                        CtorPropertyValue = "image.ImageID",
+                    };
+                    break;
+
+                default:
+                    yield return a;
+                    break;
+            }
+        }
+    }
+
+    static IEnumerable<string> CtorArgumentEnum(IEnumerable<Argument> args)
+    {
+        foreach (var a in args)
+        {
+            var n = a.CtorParameterName;
+            var t = a.CtorParameterType;
 
             if (t.StartsWith("List<") || t.StartsWith("IList<"))
                 yield return $"params {t} {n}";
@@ -225,10 +259,45 @@ class CommandGenerator
         }
     }
 
+    static string ToUppercase(string word)
+    {
+        return char.ToUpperInvariant(word[0]) + word.Substring(1);
+    }
+
+    void SetCodeNames(CommandData cmd)
+    {
+        foreach (var a in cmd.Arguments)
+        {
+            a.PropertyType = GetCodeArgumentType(cmd, a);
+            a.PropertyName = GetCodePropertyName(a);
+            a.CtorParameterType = a.PropertyType;
+            a.CtorParameterName = a.PropertyName.ToLowerInvariant();
+            a.CtorPropertyValue = a.CtorParameterName;
+        }
+
+        foreach (var o in cmd.Options)
+        {
+            o.PropertyType = GetCodeArgumentType(cmd, o);
+            o.PropertyName = GetCodePropertyName(o);
+        }
+    }
+
+    string GetCodePropertyName(Argument a)
+    {
+        if (NameMap.TryGetValue(a.Key, out var value))
+            return value;
+
+        var parts = a.Key.Trim('-').Split('-');
+        var name = string.Concat(parts.Select(ToUppercase));
+
+        NameMap[a.Key] = name;
+        return name;
+    }
+
     /// <summary>
     /// Both argument and options
     /// </summary>
-    string GetArgumentType(CommandData cmd, Argument a)
+    string GetCodeArgumentType(CommandData cmd, Argument a)
     {
         var key = a.Key;
 
@@ -237,7 +306,7 @@ class CommandGenerator
             value = TypeMap[key] = "string";
         }
 
-        if (IsOptional(cmd, a))
+        if (IsTypeNullable(cmd, a))
         {
             //Lists and bool are optional by their nature
             if (value.Contains("List"))
@@ -255,13 +324,14 @@ class CommandGenerator
         return value;
     }
 
+
     /// <summary>
     /// Determine optional status from <see cref="CommandData.Summary"/> "Usage: "
     /// </summary>
     /// <param name="cmd"></param>
     /// <param name="a"></param>
     /// <returns></returns>
-    static bool IsOptional(CommandData cmd, Argument a)
+    static bool IsTypeNullable(CommandData cmd, Argument a)
     {
         //All options are optional
         if (a.Key[0] == '-')
@@ -280,20 +350,4 @@ class CommandGenerator
         return false;
     }
 
-    string GetPropertyName(Argument a)
-    {
-        if (NameMap.TryGetValue(a.Key, out var value))
-            return value;
-
-        var parts = a.Key.Trim('-').Split('-');
-        var name = string.Concat(parts.Select(ToUppercase));
-
-        NameMap[a.Key] = name;
-        return name;
-    }
-
-    static string ToUppercase(string word)
-    {
-        return char.ToUpperInvariant(word[0]) + word.Substring(1);
-    }
 }

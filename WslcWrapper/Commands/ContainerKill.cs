@@ -29,6 +29,17 @@ public partial class ContainerKill : WslcCommand
     }
 
     /// <summary><![CDATA[
+    /// Kills containers.
+    /// Usage: wslc container kill [<options>] <container-id>
+    /// ]]></summary>
+    /// <param name="container">Container ID</param>
+    [SetsRequiredMembers]
+    public ContainerKill(IContainerID container)
+    {
+        this.ContainerID = container.ContainerID;
+    }
+
+    /// <summary><![CDATA[
     /// Signal to send
     /// --signal
     /// ]]></summary>

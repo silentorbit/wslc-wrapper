@@ -29,6 +29,17 @@ public partial class ImageSave : WslcCommand
     }
 
     /// <summary><![CDATA[
+    /// Saves images.
+    /// Usage: wslc image save [<options>] <image>
+    /// ]]></summary>
+    /// <param name="image">Image name</param>
+    [SetsRequiredMembers]
+    public ImageSave(IImageID image)
+    {
+        this.Image = image.ImageID;
+    }
+
+    /// <summary><![CDATA[
     /// Path for the saved image
     /// --output
     /// ]]></summary>

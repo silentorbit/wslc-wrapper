@@ -6,7 +6,7 @@
 /// 
 /// <see cref="ContainerList"/>.<see cref="WslcCommand{T}.RunJson"/>
 /// </summary>
-public class ContainerListItem
+public class ContainerListItem : IContainerID
 {
     public UInt64 CreatedAt { get; set; }
     public required string Id { get; set; }
@@ -33,6 +33,9 @@ public class ContainerListItem
     public DateTime Created => ToLocal(CreatedAt);
     [JsonIgnore]
     public DateTime StateChanged => ToLocal(StateChangedAt);
+
+    [JsonIgnore]
+    string IContainerID.ContainerID => Id;
 
     static DateTime ToLocal(UInt64 value)
     {

@@ -28,6 +28,17 @@ public partial class ContainerAttach : WslcCommand
         this.ContainerID = containerid;
     }
 
+    /// <summary><![CDATA[
+    /// Attaches to a container.
+    /// Usage: wslc container attach [<options>] <container-id>
+    /// ]]></summary>
+    /// <param name="container">Container ID</param>
+    [SetsRequiredMembers]
+    public ContainerAttach(IContainerID container)
+    {
+        this.ContainerID = container.ContainerID;
+    }
+
     /// <summary>
     /// Return arguments for wslc.exe
     /// </summary>

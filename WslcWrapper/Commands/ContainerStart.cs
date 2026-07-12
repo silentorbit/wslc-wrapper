@@ -29,6 +29,17 @@ public partial class ContainerStart : WslcCommand
     }
 
     /// <summary><![CDATA[
+    /// Starts a container.
+    /// Usage: wslc container start [<options>] <container-id>
+    /// ]]></summary>
+    /// <param name="container">Container ID</param>
+    [SetsRequiredMembers]
+    public ContainerStart(IContainerID container)
+    {
+        this.ContainerID = container.ContainerID;
+    }
+
+    /// <summary><![CDATA[
     /// Attach to stdout/stderr of the container
     /// --attach
     /// ]]></summary>

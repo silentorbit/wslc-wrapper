@@ -29,6 +29,17 @@ public partial class ContainerRemove : WslcCommand
     }
 
     /// <summary><![CDATA[
+    /// Removes containers.
+    /// Usage: wslc container remove [<options>] <container-id>
+    /// ]]></summary>
+    /// <param name="container">Container ID</param>
+    [SetsRequiredMembers]
+    public ContainerRemove(IContainerID container)
+    {
+        this.ContainerID = container.ContainerID;
+    }
+
+    /// <summary><![CDATA[
     /// Delete containers even if they are running
     /// --force
     /// ]]></summary>

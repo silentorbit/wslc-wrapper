@@ -3,7 +3,7 @@
 /// <summary>
 /// <see cref="ContainerStats"/>.<see cref="WslcCommand{T}.RunJson"/>
 /// </summary>
-public class ContainerStatsItem
+public class ContainerStatsItem : IContainerID
 {
     public required string BlockIO { get; set; } // "0 B / 0 B",
     public required string CPUPerc { get; set; } // "0.00%",
@@ -13,6 +13,9 @@ public class ContainerStatsItem
     public required string Name { get; set; } // "crisp_alps",
     public required string NetIO { get; set; } // "0 B / 0 B",
     public required int PIDs { get; set; } // 0
+
+    [JsonIgnore]
+    string IContainerID.ContainerID => ID;
 
 #if !DEBUG
     [JsonExtensionData]

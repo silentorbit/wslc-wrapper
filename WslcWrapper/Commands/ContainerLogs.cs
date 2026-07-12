@@ -29,6 +29,17 @@ public partial class ContainerLogs : WslcCommand
     }
 
     /// <summary><![CDATA[
+    /// View logs for a container.
+    /// Usage: wslc container logs [<options>] <container-id>
+    /// ]]></summary>
+    /// <param name="container">Container ID</param>
+    [SetsRequiredMembers]
+    public ContainerLogs(IContainerID container)
+    {
+        this.ContainerID = container.ContainerID;
+    }
+
+    /// <summary><![CDATA[
     /// Follow log output
     /// --follow
     /// ]]></summary>

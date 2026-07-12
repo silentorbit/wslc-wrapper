@@ -43,6 +43,21 @@ public partial class ContainerRun : WslcCommand
     }
 
     /// <summary><![CDATA[
+    /// Runs a container. By default, the container is started in the foreground; use --detach to run in the background.
+    /// Usage: wslc container run [<options>] <image> [<command>] [<arguments>...]
+    /// ]]></summary>
+    /// <param name="image">Image name</param>
+    /// <param name="command">The command to run</param>
+    /// <param name="arguments">Arguments to pass to container's init process</param>
+    [SetsRequiredMembers]
+    public ContainerRun(IImageID image, string? command = null, params IList<string> arguments)
+    {
+        this.Image = image.ImageID;
+        this.Command = command;
+        this.Arguments = arguments;
+    }
+
+    /// <summary><![CDATA[
     /// Write the container ID to the provided path
     /// --cidfile
     /// ]]></summary>
