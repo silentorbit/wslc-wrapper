@@ -1,39 +1,54 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Creates a new network.
 /// Usage: wslc network create [<options>] <network-name>
-/// </summary>
+/// ]]></summary>
 public partial class NetworkCreate : WslcCommand
 {
+    /// <summary>
+    /// Network name
+    /// </summary>
     public required string NetworkName { get; set; }
 
+    /// <summary><![CDATA[
+    /// Creates a new network.
+    /// Usage: wslc network create [<options>] <network-name>
+    /// ]]></summary>
     public NetworkCreate() { }
 
+    /// <summary><![CDATA[
+    /// Creates a new network.
+    /// Usage: wslc network create [<options>] <network-name>
+    /// ]]></summary>
+    /// <param name="networkname">Network name</param>
     [SetsRequiredMembers]
     public NetworkCreate(string networkname)
     {
         this.NetworkName = networkname;
     }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Specify network driver name (default: bridge)
     /// --driver
-    /// </summary>
+    /// ]]></summary>
     public string? Driver { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Set driver specific options
     /// --opt
-    /// </summary>
+    /// ]]></summary>
     public string? Opt { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Network metadata setting
     /// --label
-    /// </summary>
+    /// ]]></summary>
     public string? Label { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("network", "create");

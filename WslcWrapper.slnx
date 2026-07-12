@@ -5,6 +5,7 @@
     <File Path=".github/workflows/test.yaml" />
   </Folder>
   <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
     <File Path="LICENSE" />
     <File Path="README.md" />
   </Folder>

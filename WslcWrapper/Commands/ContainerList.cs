@@ -1,55 +1,62 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Lists containers. By default, only running containers are shown; use --all to include all containers.
 /// Usage: wslc container list [<options>]
-/// </summary>
-public partial class ContainerList : WslcCommand<List<ContainerListJson>>, IFormatJson
+/// ]]></summary>
+public partial class ContainerList : WslcCommand<List<ContainerListItem>>, IFormatJson
 {
+    /// <summary><![CDATA[
+    /// Lists containers. By default, only running containers are shown; use --all to include all containers.
+    /// Usage: wslc container list [<options>]
+    /// ]]></summary>
     public ContainerList() { }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Show all regardless of state.
     /// --all
-    /// </summary>
+    /// ]]></summary>
     public bool All { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Filter output based on conditions provided
     /// --filter
-    /// </summary>
+    /// ]]></summary>
     public string? Filter { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Output formatting (json or table) (Default: table)
     /// --format
-    /// </summary>
+    /// ]]></summary>
     public string? Format { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Show n last created containers (includes all states)
     /// --last
-    /// </summary>
+    /// ]]></summary>
     public string? Last { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Show the latest created container (includes all states)
     /// --latest
-    /// </summary>
+    /// ]]></summary>
     public string? Latest { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Do not truncate output
     /// --no-trunc
-    /// </summary>
+    /// ]]></summary>
     public bool NoTrunc { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Outputs the container IDs only
     /// --quiet
-    /// </summary>
+    /// ]]></summary>
     public bool Quiet { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("container", "list");

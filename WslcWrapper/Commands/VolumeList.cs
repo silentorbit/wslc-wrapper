@@ -1,25 +1,32 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Lists all volumes in the session.
 /// Usage: wslc volume list [<options>]
-/// </summary>
+/// ]]></summary>
 public partial class VolumeList : WslcCommand, IFormatJson
 {
+    /// <summary><![CDATA[
+    /// Lists all volumes in the session.
+    /// Usage: wslc volume list [<options>]
+    /// ]]></summary>
     public VolumeList() { }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Output formatting (json or table) (Default: table)
     /// --format
-    /// </summary>
+    /// ]]></summary>
     public string? Format { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Outputs the volume names only
     /// --quiet
-    /// </summary>
+    /// ]]></summary>
     public bool Quiet { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("volume", "list");

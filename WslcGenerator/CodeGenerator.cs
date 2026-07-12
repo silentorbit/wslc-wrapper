@@ -58,4 +58,33 @@ class CodeGenerator
 
     }
 
+
+    /// <summary><![CDATA[
+    /// <test>Data</test>
+    /// ]]></summary>
+    internal void AppendSummary(params List<string> summary)
+    {
+        bool escape = summary.Count > 1 || summary.Any(s => s.Contains('<'));
+
+        if (escape)
+            AppendLine("/// <summary><![CDATA[");
+        else
+            AppendLine("/// <summary>");
+
+        foreach (var line in summary)
+            AppendLine($"/// {line}");
+
+        if (escape)
+            AppendLine("/// ]]></summary>");
+        else
+            AppendLine("/// </summary>");
+    }
+
+    internal void AppendParam(string name, string help)
+    {
+        if (help.Contains('<'))
+            AppendLine($"""/// <param name="{name}"><![CDATA[{help}]]></param>""");
+        else
+            AppendLine($"""/// <param name="{name}">{help}</param>""");
+    }
 }

@@ -1,33 +1,48 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Stops containers.
 /// Usage: wslc container stop [<options>] [<container-id>]
-/// </summary>
+/// ]]></summary>
 public partial class ContainerStop : WslcCommand
 {
+    /// <summary>
+    /// Container ID
+    /// </summary>
     public string? ContainerID { get; set; }
 
+    /// <summary><![CDATA[
+    /// Stops containers.
+    /// Usage: wslc container stop [<options>] [<container-id>]
+    /// ]]></summary>
     public ContainerStop() { }
 
+    /// <summary><![CDATA[
+    /// Stops containers.
+    /// Usage: wslc container stop [<options>] [<container-id>]
+    /// ]]></summary>
+    /// <param name="containerid">Container ID</param>
     [SetsRequiredMembers]
     public ContainerStop(string? containerid = null)
     {
         this.ContainerID = containerid;
     }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Signal to send
     /// --signal
-    /// </summary>
+    /// ]]></summary>
     public string? Signal { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Time in seconds to wait before executing (default 5)
     /// --time
-    /// </summary>
+    /// ]]></summary>
     public string? Time { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("container", "stop");

@@ -1,69 +1,84 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Builds an image from a Dockerfile and a build context directory.
 /// Usage: wslc image build [<options>] <path>
-/// </summary>
+/// ]]></summary>
 public partial class ImageBuild : WslcCommand
 {
+    /// <summary>
+    /// Path to the build context directory
+    /// </summary>
     public required string Path { get; set; }
 
+    /// <summary><![CDATA[
+    /// Builds an image from a Dockerfile and a build context directory.
+    /// Usage: wslc image build [<options>] <path>
+    /// ]]></summary>
     public ImageBuild() { }
 
+    /// <summary><![CDATA[
+    /// Builds an image from a Dockerfile and a build context directory.
+    /// Usage: wslc image build [<options>] <path>
+    /// ]]></summary>
+    /// <param name="path">Path to the build context directory</param>
     [SetsRequiredMembers]
     public ImageBuild(string path)
     {
         this.Path = path;
     }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Set build-time variables (KEY=VALUE)
     /// --build-arg
-    /// </summary>
+    /// ]]></summary>
     public string? BuildArg { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Always attempt to pull a newer version of the image
     /// --pull
-    /// </summary>
+    /// ]]></summary>
     public string? Pull { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Set the target build stage to build
     /// --target
-    /// </summary>
+    /// ]]></summary>
     public string? Target { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Path to the Dockerfile (use "-" to read from stdin)
     /// --file
-    /// </summary>
+    /// ]]></summary>
     public string? File { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Set metadata on an object
     /// --label
-    /// </summary>
+    /// ]]></summary>
     public string? Label { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Do not use cache when building the image
     /// --no-cache
-    /// </summary>
+    /// ]]></summary>
     public bool NoCache { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Tag for the built image
     /// --tag
-    /// </summary>
+    /// ]]></summary>
     public string? Tag { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Output verbose details
     /// --verbose
-    /// </summary>
+    /// ]]></summary>
     public string? Verbose { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("image", "build");

@@ -1,19 +1,39 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Runs a container. By default, the container is started in the foreground; use --detach to run in the background.
 /// Usage: wslc container run [<options>] <image> [<command>] [<arguments>...]
-/// </summary>
+/// ]]></summary>
 public partial class ContainerRun : WslcCommand
 {
+    /// <summary>
+    /// Image name
+    /// </summary>
     public required string Image { get; set; }
 
+    /// <summary>
+    /// The command to run
+    /// </summary>
     public string? Command { get; set; }
 
+    /// <summary>
+    /// Arguments to pass to container's init process
+    /// </summary>
     public required IList<string> Arguments { get; set; }
 
+    /// <summary><![CDATA[
+    /// Runs a container. By default, the container is started in the foreground; use --detach to run in the background.
+    /// Usage: wslc container run [<options>] <image> [<command>] [<arguments>...]
+    /// ]]></summary>
     public ContainerRun() { }
 
+    /// <summary><![CDATA[
+    /// Runs a container. By default, the container is started in the foreground; use --detach to run in the background.
+    /// Usage: wslc container run [<options>] <image> [<command>] [<arguments>...]
+    /// ]]></summary>
+    /// <param name="image">Image name</param>
+    /// <param name="command">The command to run</param>
+    /// <param name="arguments">Arguments to pass to container's init process</param>
     [SetsRequiredMembers]
     public ContainerRun(string image, string? command = null, params IList<string> arguments)
     {
@@ -22,180 +42,183 @@ public partial class ContainerRun : WslcCommand
         this.Arguments = arguments;
     }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Write the container ID to the provided path
     /// --cidfile
-    /// </summary>
+    /// ]]></summary>
     public string? Cidfile { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Number of CPUs (e.g. 0.5, 1, 2.5)
     /// --cpus
-    /// </summary>
+    /// ]]></summary>
     public string? CPUs { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Run container in detached mode
     /// --detach
-    /// </summary>
+    /// ]]></summary>
     public bool Detach { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// IP address of the DNS nameserver in resolv.conf
     /// --dns
-    /// </summary>
+    /// ]]></summary>
     public string? DNS { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Set DNS options
     /// --dns-option
-    /// </summary>
+    /// ]]></summary>
     public string? DnsOption { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Set DNS search domains
     /// --dns-search
-    /// </summary>
+    /// ]]></summary>
     public string? DnsSearch { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Container domain name
     /// --domainname
-    /// </summary>
+    /// ]]></summary>
     public string? Domainname { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Specifies the container init process executable
     /// --entrypoint
-    /// </summary>
+    /// ]]></summary>
     public string? Entrypoint { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Key=Value pairs for environment variables
     /// --env
-    /// </summary>
+    /// ]]></summary>
     public List<EnvValue> Env { get; set; } = [];
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// File containing key=value pairs of env variables
     /// --env-file
-    /// </summary>
+    /// ]]></summary>
     public string? EnvFile { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Add GPU devices to the container ('all' to pass all GPUs)
     /// --gpus
-    /// </summary>
+    /// ]]></summary>
     public string? GPUs { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Container host name
     /// --hostname
-    /// </summary>
+    /// ]]></summary>
     public string? Hostname { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Attach to stdin and keep it open
     /// --interactive
-    /// </summary>
+    /// ]]></summary>
     public bool Interactive { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Set metadata on an object
     /// --label
-    /// </summary>
+    /// ]]></summary>
     public string? Label { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Memory limit (e.g. 512M, 1G)
     /// --memory
-    /// </summary>
+    /// ]]></summary>
     public string? Memory { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Name of the container
     /// --name
-    /// </summary>
+    /// ]]></summary>
     public string? Name { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Connect a container to a network
     /// --network
-    /// </summary>
+    /// ]]></summary>
     public string? Network { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Add a network-scoped alias for the container
     /// --network-alias
-    /// </summary>
+    /// ]]></summary>
     public string? NetworkAlias { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Publish a port from a container to host
     /// --publish
-    /// </summary>
+    /// ]]></summary>
     public List<PortMap> Publish { get; set; } = [];
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Publish all exposed ports to random host ports
     /// --publish-all
-    /// </summary>
+    /// ]]></summary>
     public bool PublishAll { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Remove the container after it stops
     /// --rm
-    /// </summary>
+    /// ]]></summary>
     public bool RM { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Size of /dev/shm (e.g. 64M, 1G)
     /// --shm-size
-    /// </summary>
+    /// ]]></summary>
     public string? ShmSize { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Signal to stop the container
     /// --stop-signal
-    /// </summary>
+    /// ]]></summary>
     public string? StopSignal { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Mount tmpfs to the container at the given path
     /// --tmpfs
-    /// </summary>
+    /// ]]></summary>
     public string? Tmpfs { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Open a TTY with the container process.
     /// --tty
-    /// </summary>
+    /// ]]></summary>
     public bool TTY { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Ulimit options (format: <name>=<soft>[:<hard>], use -1 for unlimited)
     /// --ulimit
-    /// </summary>
+    /// ]]></summary>
     public string? ULimit { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// User ID for the process (name|uid|uid:gid)
     /// --user
-    /// </summary>
+    /// ]]></summary>
     public string? User { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Bind mount a volume to the container
     /// --volume
-    /// </summary>
+    /// ]]></summary>
     public List<VolumeArg> Volume { get; set; } = [];
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Working directory inside the container
     /// --workdir
-    /// </summary>
+    /// ]]></summary>
     public string? Workdir { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("container", "run");

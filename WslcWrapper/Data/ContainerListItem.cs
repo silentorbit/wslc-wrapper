@@ -3,8 +3,10 @@
 /// <summary>
 /// Direct map of:
 /// wslc container list --format json
+/// 
+/// <see cref="ContainerList"/>.<see cref="WslcCommand{T}.RunJson"/>
 /// </summary>
-public class ContainerListJson
+public class ContainerListItem
 {
     public UInt64 CreatedAt { get; set; }
     public required string Id { get; set; }

@@ -84,10 +84,7 @@ class CommandGenerator
 
         code.AppendLine("namespace SilentOrbit.WSLC.Commands;");
         code.AppendLine();
-        code.AppendLine("/// <summary>");
-        foreach (var summaryLine in cmd.Summary)
-            code.AppendLine($"/// {summaryLine}");
-        code.AppendLine("/// </summary>");
+        code.AppendSummary(cmd.Summary);
         code.AppendLine($"public partial class {cmd.ClassName} : WslcCommand{returnType}{formatInterface}");
         code.AppendLine("{");
 
@@ -96,6 +93,7 @@ class CommandGenerator
         {
             var t = GetArgumentType(cmd, a);
             var n = GetPropertyName(a);
+            code.AppendSummary(a.Summary);
             if (t.StartsWith("List<"))
                 code.AppendLine($"public {t} {n} {{ get; set; }} = [];");
             else if (t.EndsWith('?'))
@@ -107,10 +105,17 @@ class CommandGenerator
 
         //Ctor
         //For serialization and setting arguments via intialization properties
+        code.AppendSummary(cmd.Summary);
         code.AppendLine($"public {cmd.ClassName}() {{ }}");
         code.AppendLine();
         if (cmd.Arguments.Count > 0)
         {
+            code.AppendSummary(cmd.Summary);
+            foreach (var a in cmd.Arguments)
+            {
+                var n = GetPropertyName(a).ToLowerInvariant();
+                code.AppendParam(n, a.Summary);
+            }
             code.AppendLine("[SetsRequiredMembers]");
             code.AppendLine($"public {cmd.ClassName}({string.Join(", ", CtorArgumentEnum(cmd))})");
             code.AppendLine("{");
@@ -130,15 +135,13 @@ class CommandGenerator
             var n = GetPropertyName(o);
             var setNew = t.StartsWith("List<") ? " = [];" : null;
 
-            code.AppendLine($"/// <summary>");
-            code.AppendLine($"/// {o.Summary}");
-            code.AppendLine($"/// {o.Key}");
-            code.AppendLine($"/// </summary>");
+            code.AppendSummary(o.Summary, o.Key);
             code.AppendLine($"public {t} {n} {{ get; set; }}{setNew}");
             code.AppendLine();
         }
 
         //BuildArgs
+        code.AppendSummary("Return arguments for wslc.exe");
         code.AppendLine("protected override void BuildArgs(List<string> args)");
         code.AppendLine("{");
         code.AppendLine($"args.AddRange({string.Join(", ", cmd.Command.Select(c => $@"""{c}"""))});");
@@ -258,7 +261,6 @@ class CommandGenerator
     /// <param name="cmd"></param>
     /// <param name="a"></param>
     /// <returns></returns>
-    bool IsOptional(CommandData cmd, Argument a)
     static bool IsOptional(CommandData cmd, Argument a)
     {
         //All options are optional

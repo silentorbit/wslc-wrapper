@@ -1,6 +1,9 @@
 ﻿namespace SilentOrbit.WSLC.Data;
 
-public class NetworkInfo
+/// <summary>
+/// <see cref="NetworkList"/>.<see cref="WslcCommand{T}.RunJson"/>
+/// </summary>
+public class NetworkListItem
 {
     public required string Driver { get; set; }
     public required string Id { get; set; }

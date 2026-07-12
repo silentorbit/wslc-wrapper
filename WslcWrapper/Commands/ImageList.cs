@@ -1,43 +1,50 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Lists images.
 /// Usage: wslc image list [<options>]
-/// </summary>
-public partial class ImageList : WslcCommand<List<ImageListJson>>, IFormatJson
+/// ]]></summary>
+public partial class ImageList : WslcCommand<List<ImageListItem>>, IFormatJson
 {
+    /// <summary><![CDATA[
+    /// Lists images.
+    /// Usage: wslc image list [<options>]
+    /// ]]></summary>
     public ImageList() { }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Filter output based on conditions provided
     /// --filter
-    /// </summary>
+    /// ]]></summary>
     public string? Filter { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Output formatting (json or table) (Default: table)
     /// --format
-    /// </summary>
+    /// ]]></summary>
     public string? Format { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Do not truncate output
     /// --no-trunc
-    /// </summary>
+    /// ]]></summary>
     public bool NoTrunc { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Outputs the container IDs only
     /// --quiet
-    /// </summary>
+    /// ]]></summary>
     public bool Quiet { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Output verbose details
     /// --verbose
-    /// </summary>
+    /// ]]></summary>
     public string? Verbose { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("image", "list");

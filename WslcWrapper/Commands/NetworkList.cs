@@ -1,25 +1,32 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Lists all networks in the session.
 /// Usage: wslc network list [<options>]
-/// </summary>
-public partial class NetworkList : WslcCommand, IFormatJson
+/// ]]></summary>
+public partial class NetworkList : WslcCommand<List<NetworkListItem>>, IFormatJson
 {
+    /// <summary><![CDATA[
+    /// Lists all networks in the session.
+    /// Usage: wslc network list [<options>]
+    /// ]]></summary>
     public NetworkList() { }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Output formatting (json or table) (Default: table)
     /// --format
-    /// </summary>
+    /// ]]></summary>
     public string? Format { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Outputs the network names only
     /// --quiet
-    /// </summary>
+    /// ]]></summary>
     public bool Quiet { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("network", "list");

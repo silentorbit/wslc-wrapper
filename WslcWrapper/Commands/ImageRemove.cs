@@ -1,33 +1,48 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Removes images.
 /// Usage: wslc image remove [<options>] <image>
-/// </summary>
+/// ]]></summary>
 public partial class ImageRemove : WslcCommand
 {
+    /// <summary>
+    /// Image name
+    /// </summary>
     public required string Image { get; set; }
 
+    /// <summary><![CDATA[
+    /// Removes images.
+    /// Usage: wslc image remove [<options>] <image>
+    /// ]]></summary>
     public ImageRemove() { }
 
+    /// <summary><![CDATA[
+    /// Removes images.
+    /// Usage: wslc image remove [<options>] <image>
+    /// ]]></summary>
+    /// <param name="image">Image name</param>
     [SetsRequiredMembers]
     public ImageRemove(string image)
     {
         this.Image = image;
     }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Delete images even if they are being used
     /// --force
-    /// </summary>
+    /// ]]></summary>
     public bool Force { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Do not delete untagged parents
     /// --no-prune
-    /// </summary>
+    /// ]]></summary>
     public bool NoPrune { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("image", "remove");

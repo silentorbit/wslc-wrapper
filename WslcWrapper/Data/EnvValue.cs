@@ -1,5 +1,8 @@
 ﻿namespace SilentOrbit.WSLC.Data;
 
+/// <summary>
+/// <see cref="ContainerCreate.Env"/>
+/// </summary>
 public class EnvValue : IListArg
 {
     public required string Key { get; set; }

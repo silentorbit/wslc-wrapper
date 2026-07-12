@@ -1,33 +1,48 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Starts a container.
 /// Usage: wslc container start [<options>] <container-id>
-/// </summary>
+/// ]]></summary>
 public partial class ContainerStart : WslcCommand
 {
+    /// <summary>
+    /// Container ID
+    /// </summary>
     public required string ContainerID { get; set; }
 
+    /// <summary><![CDATA[
+    /// Starts a container.
+    /// Usage: wslc container start [<options>] <container-id>
+    /// ]]></summary>
     public ContainerStart() { }
 
+    /// <summary><![CDATA[
+    /// Starts a container.
+    /// Usage: wslc container start [<options>] <container-id>
+    /// ]]></summary>
+    /// <param name="containerid">Container ID</param>
     [SetsRequiredMembers]
     public ContainerStart(string containerid)
     {
         this.ContainerID = containerid;
     }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Attach to stdout/stderr of the container
     /// --attach
-    /// </summary>
+    /// ]]></summary>
     public bool Attach { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Attach to stdin and keep it open
     /// --interactive
-    /// </summary>
+    /// ]]></summary>
     public bool Interactive { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("container", "start");

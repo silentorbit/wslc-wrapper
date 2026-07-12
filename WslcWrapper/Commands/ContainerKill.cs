@@ -1,27 +1,42 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Kills containers.
 /// Usage: wslc container kill [<options>] <container-id>
-/// </summary>
+/// ]]></summary>
 public partial class ContainerKill : WslcCommand
 {
+    /// <summary>
+    /// Container ID
+    /// </summary>
     public required string ContainerID { get; set; }
 
+    /// <summary><![CDATA[
+    /// Kills containers.
+    /// Usage: wslc container kill [<options>] <container-id>
+    /// ]]></summary>
     public ContainerKill() { }
 
+    /// <summary><![CDATA[
+    /// Kills containers.
+    /// Usage: wslc container kill [<options>] <container-id>
+    /// ]]></summary>
+    /// <param name="containerid">Container ID</param>
     [SetsRequiredMembers]
     public ContainerKill(string containerid)
     {
         this.ContainerID = containerid;
     }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Signal to send
     /// --signal
-    /// </summary>
+    /// ]]></summary>
     public string? Signal { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("container", "kill");

@@ -1,27 +1,42 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Removes one or more volumes. A volume cannot be removed if it is in use by a container.
 /// Usage: wslc volume remove [<options>] <volume-name>
-/// </summary>
+/// ]]></summary>
 public partial class VolumeRemove : WslcCommand
 {
+    /// <summary>
+    /// Volume name
+    /// </summary>
     public required string VolumeName { get; set; }
 
+    /// <summary><![CDATA[
+    /// Removes one or more volumes. A volume cannot be removed if it is in use by a container.
+    /// Usage: wslc volume remove [<options>] <volume-name>
+    /// ]]></summary>
     public VolumeRemove() { }
 
+    /// <summary><![CDATA[
+    /// Removes one or more volumes. A volume cannot be removed if it is in use by a container.
+    /// Usage: wslc volume remove [<options>] <volume-name>
+    /// ]]></summary>
+    /// <param name="volumename">Volume name</param>
     [SetsRequiredMembers]
     public VolumeRemove(string volumename)
     {
         this.VolumeName = volumename;
     }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Do not error if the volume does not exist
     /// --force
-    /// </summary>
+    /// ]]></summary>
     public bool Force { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("volume", "remove");

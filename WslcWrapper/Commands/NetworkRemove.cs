@@ -1,27 +1,42 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Removes one or more networks.
 /// Usage: wslc network remove [<options>] <network-name>
-/// </summary>
+/// ]]></summary>
 public partial class NetworkRemove : WslcCommand
 {
+    /// <summary>
+    /// Network name
+    /// </summary>
     public required string NetworkName { get; set; }
 
+    /// <summary><![CDATA[
+    /// Removes one or more networks.
+    /// Usage: wslc network remove [<options>] <network-name>
+    /// ]]></summary>
     public NetworkRemove() { }
 
+    /// <summary><![CDATA[
+    /// Removes one or more networks.
+    /// Usage: wslc network remove [<options>] <network-name>
+    /// ]]></summary>
+    /// <param name="networkname">Network name</param>
     [SetsRequiredMembers]
     public NetworkRemove(string networkname)
     {
         this.NetworkName = networkname;
     }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Do not error if the network does not exist
     /// --force
-    /// </summary>
+    /// ]]></summary>
     public bool Force { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("network", "remove");

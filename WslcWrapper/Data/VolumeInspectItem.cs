@@ -1,6 +1,6 @@
 ﻿namespace SilentOrbit.WSLC.Data;
 
-public class VolumeInspectJson
+public class VolumeInspectItem
 {
     public required string CreatedAt { get; set; }
     public required string Driver { get; set; }

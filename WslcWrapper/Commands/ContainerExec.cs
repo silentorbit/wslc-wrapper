@@ -1,19 +1,39 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Executes a command in a running container.
 /// Usage: wslc container exec [<options>] <container-id> <command> [<arguments>...]
-/// </summary>
+/// ]]></summary>
 public partial class ContainerExec : WslcCommand
 {
+    /// <summary>
+    /// Container ID
+    /// </summary>
     public required string ContainerID { get; set; }
 
+    /// <summary>
+    /// The command to run
+    /// </summary>
     public required string Command { get; set; }
 
+    /// <summary>
+    /// Arguments to pass to the command being executed inside the container
+    /// </summary>
     public required IList<string> Arguments { get; set; }
 
+    /// <summary><![CDATA[
+    /// Executes a command in a running container.
+    /// Usage: wslc container exec [<options>] <container-id> <command> [<arguments>...]
+    /// ]]></summary>
     public ContainerExec() { }
 
+    /// <summary><![CDATA[
+    /// Executes a command in a running container.
+    /// Usage: wslc container exec [<options>] <container-id> <command> [<arguments>...]
+    /// ]]></summary>
+    /// <param name="containerid">Container ID</param>
+    /// <param name="command">The command to run</param>
+    /// <param name="arguments">Arguments to pass to the command being executed inside the container</param>
     [SetsRequiredMembers]
     public ContainerExec(string containerid, string command, params IList<string> arguments)
     {
@@ -22,48 +42,51 @@ public partial class ContainerExec : WslcCommand
         this.Arguments = arguments;
     }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Run container in detached mode
     /// --detach
-    /// </summary>
+    /// ]]></summary>
     public bool Detach { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Key=Value pairs for environment variables
     /// --env
-    /// </summary>
+    /// ]]></summary>
     public List<EnvValue> Env { get; set; } = [];
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// File containing key=value pairs of env variables
     /// --env-file
-    /// </summary>
+    /// ]]></summary>
     public string? EnvFile { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Attach to stdin and keep it open
     /// --interactive
-    /// </summary>
+    /// ]]></summary>
     public bool Interactive { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Open a TTY with the container process.
     /// --tty
-    /// </summary>
+    /// ]]></summary>
     public bool TTY { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// User ID for the process (name|uid|uid:gid)
     /// --user
-    /// </summary>
+    /// ]]></summary>
     public string? User { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Working directory inside the container
     /// --workdir
-    /// </summary>
+    /// ]]></summary>
     public string? Workdir { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("container", "exec");

@@ -1,27 +1,42 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Exports a container's filesystem as a tar archive.
 /// Usage: wslc container export [<options>] <container-id>
-/// </summary>
+/// ]]></summary>
 public partial class ContainerExport : WslcCommand
 {
+    /// <summary>
+    /// Container ID
+    /// </summary>
     public required string ContainerID { get; set; }
 
+    /// <summary><![CDATA[
+    /// Exports a container's filesystem as a tar archive.
+    /// Usage: wslc container export [<options>] <container-id>
+    /// ]]></summary>
     public ContainerExport() { }
 
+    /// <summary><![CDATA[
+    /// Exports a container's filesystem as a tar archive.
+    /// Usage: wslc container export [<options>] <container-id>
+    /// ]]></summary>
+    /// <param name="containerid">Container ID</param>
     [SetsRequiredMembers]
     public ContainerExport(string containerid)
     {
         this.ContainerID = containerid;
     }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Write to a file, instead of STDOUT
     /// --output
-    /// </summary>
+    /// ]]></summary>
     public string? Output { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("container", "export");

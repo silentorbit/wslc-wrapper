@@ -1,9 +1,9 @@
 ﻿namespace SilentOrbit.WSLC.Data;
 
 /// <summary>
-/// wslc.exe image list --format json
+/// <see cref="ImageList"/>.<see cref="WslcCommand{T}.RunJson"/>
 /// </summary>
-public class ImageListJson
+public class ImageListItem
 {
     public required long Created { get; set; }
     public required string Id { get; set; }

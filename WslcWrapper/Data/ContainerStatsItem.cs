@@ -1,6 +1,9 @@
 ﻿namespace SilentOrbit.WSLC.Data;
 
-public class ContainerStatsJson
+/// <summary>
+/// <see cref="ContainerStats"/>.<see cref="WslcCommand{T}.RunJson"/>
+/// </summary>
+public class ContainerStatsItem
 {
     public required string BlockIO { get; set; } // "0 B / 0 B",
     public required string CPUPerc { get; set; } // "0.00%",

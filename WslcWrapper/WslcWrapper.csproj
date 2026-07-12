@@ -31,6 +31,9 @@
 		
 		<!-- Intellisense support -->
 		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+		<NoWarn Condition="'$(Configuration)' == 'Release'">$(NoWarn);1591</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>

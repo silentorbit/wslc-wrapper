@@ -1,51 +1,66 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// View logs for a container.
 /// Usage: wslc container logs [<options>] <container-id>
-/// </summary>
+/// ]]></summary>
 public partial class ContainerLogs : WslcCommand
 {
+    /// <summary>
+    /// Container ID
+    /// </summary>
     public required string ContainerID { get; set; }
 
+    /// <summary><![CDATA[
+    /// View logs for a container.
+    /// Usage: wslc container logs [<options>] <container-id>
+    /// ]]></summary>
     public ContainerLogs() { }
 
+    /// <summary><![CDATA[
+    /// View logs for a container.
+    /// Usage: wslc container logs [<options>] <container-id>
+    /// ]]></summary>
+    /// <param name="containerid">Container ID</param>
     [SetsRequiredMembers]
     public ContainerLogs(string containerid)
     {
         this.ContainerID = containerid;
     }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Follow log output
     /// --follow
-    /// </summary>
+    /// ]]></summary>
     public bool Follow { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Number of lines to show from the end of the logs
     /// --tail
-    /// </summary>
+    /// ]]></summary>
     public bool Tail { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Show timestamps in log output
     /// --timestamps
-    /// </summary>
+    /// ]]></summary>
     public bool Timestamps { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Show logs since timestamp (Unix epoch seconds or RFC3339, e.g. 2024-01-15T10:30:00Z)
     /// --since
-    /// </summary>
+    /// ]]></summary>
     public string? Since { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Show logs before timestamp (Unix epoch seconds or RFC3339, e.g. 2024-01-15T10:30:00Z)
     /// --until
-    /// </summary>
+    /// ]]></summary>
     public string? Until { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("container", "logs");

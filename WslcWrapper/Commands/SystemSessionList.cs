@@ -1,19 +1,26 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Lists active session(s).
 /// Usage: wslc system session list [<options>]
-/// </summary>
+/// ]]></summary>
 public partial class SystemSessionList : WslcCommand
 {
+    /// <summary><![CDATA[
+    /// Lists active session(s).
+    /// Usage: wslc system session list [<options>]
+    /// ]]></summary>
     public SystemSessionList() { }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Show detailed information about the listed sessions.
     /// --verbose
-    /// </summary>
+    /// ]]></summary>
     public string? Verbose { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("system", "session", "list");

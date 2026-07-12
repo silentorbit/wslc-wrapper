@@ -11,7 +11,7 @@ internal class ReadMe
     public static void Demo()
     {
         //Get list of images
-        List<ImageListJson> list = new ImageList().RunJson();
+        List<ImageListItem> list = new ImageList().RunJson();
         
         //Create a container from one of the images
         new ContainerCreate(image: list[0])

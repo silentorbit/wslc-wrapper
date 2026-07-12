@@ -1,9 +1,9 @@
 ﻿namespace SilentOrbit.WSLC.Data;
 
 /// <summary>
-/// <see cref="Commands.ImageInspect"/>
+/// <see cref="ImageInspect"/>.<see cref="WslcCommand{T}.RunJson"/>
 /// </summary>
-public class ImageInspecJson
+public class ImageInspectItem
 {
 
 #if !DEBUG

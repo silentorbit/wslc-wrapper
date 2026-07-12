@@ -3,14 +3,13 @@
 namespace SilentOrbit.WSLC.Data;
 
 /// <summary>
-/// Directly mapping of wslc json output.
-/// Also used in <see cref="CreateCommand"/>
+/// Used in both arguments and response.
+/// <see cref="ContainerCreate.Publish"/>
+/// <see cref="ContainerRun.Publish"/>
+/// <see cref="ContainerListItem.Ports"/>
 /// </summary>
 public class PortMap : IListArg
 {
-    /// <summary>
-    /// Not yet used
-    /// </summary>
     public string? BindingAddress { get; set; }
     public required ushort HostPort { get; set; }
     public required ushort ContainerPort { get; set; }

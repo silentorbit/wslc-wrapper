@@ -150,12 +150,13 @@
     "--workdir": "Workdir"
   },
   "ReturnMap": {
-    "image list": "List<ImageListJson>",
-    "image inspect": "List<ImageInspectJson>",
-    "container list": "List<ContainerListJson>",
-    "container inspect": "List<ContainerInspectJson>",
-    "container stats": "List<ContainerStatsJson>",
-    "network inspect": "List<NetworkInspectJson>",
-    "volume inspect": "List<VolumeInspectJson>"
+    "image list": "List<ImageListItem>",
+    "image inspect": "List<ImageInspectItem>",
+    "container list": "List<ContainerListItem>",
+    "container inspect": "List<ContainerInspectItem>",
+    "container stats": "List<ContainerStatsItem>",
+    "network inspect": "List<NetworkInspectItem>",
+    "network list": "List<NetworkListItem>",
+    "volume inspect": "List<VolumeInspectItem>"
   }
 }

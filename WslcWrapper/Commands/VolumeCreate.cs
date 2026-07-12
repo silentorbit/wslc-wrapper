@@ -1,39 +1,54 @@
 ﻿namespace SilentOrbit.WSLC.Commands;
 
-/// <summary>
+/// <summary><![CDATA[
 /// Creates a named volume that can be attached to containers.
 /// Usage: wslc volume create [<options>] [<volume-name>]
-/// </summary>
+/// ]]></summary>
 public partial class VolumeCreate : WslcCommand
 {
+    /// <summary>
+    /// Volume name
+    /// </summary>
     public string? VolumeName { get; set; }
 
+    /// <summary><![CDATA[
+    /// Creates a named volume that can be attached to containers.
+    /// Usage: wslc volume create [<options>] [<volume-name>]
+    /// ]]></summary>
     public VolumeCreate() { }
 
+    /// <summary><![CDATA[
+    /// Creates a named volume that can be attached to containers.
+    /// Usage: wslc volume create [<options>] [<volume-name>]
+    /// ]]></summary>
+    /// <param name="volumename">Volume name</param>
     [SetsRequiredMembers]
     public VolumeCreate(string? volumename = null)
     {
         this.VolumeName = volumename;
     }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Specify volume driver name, e.g. 'guest' or 'vhd' (default: guest)
     /// --driver
-    /// </summary>
+    /// ]]></summary>
     public string? Driver { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Set driver specific options
     /// --opt
-    /// </summary>
+    /// ]]></summary>
     public string? Opt { get; set; }
 
-    /// <summary>
+    /// <summary><![CDATA[
     /// Set metadata on an object
     /// --label
-    /// </summary>
+    /// ]]></summary>
     public string? Label { get; set; }
 
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("volume", "create");
