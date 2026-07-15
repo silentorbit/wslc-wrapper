@@ -157,6 +157,7 @@
     "container stats": "List<ContainerStatsItem>",
     "network inspect": "List<NetworkInspectItem>",
     "network list": "List<NetworkListItem>",
-    "volume inspect": "List<VolumeInspectItem>"
+    "volume inspect": "List<VolumeInspectItem>",
+    "volume list": "List<VolumeListItem>"
   }
 }
