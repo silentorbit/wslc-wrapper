@@ -10,6 +10,7 @@ public class EnvValue : IListArg
 
     public EnvValue() { }
 
+    [SetsRequiredMembers]
     public EnvValue(string key, string value)
     {
         this.Key = key;
