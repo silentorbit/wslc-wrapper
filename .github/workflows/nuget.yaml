@@ -1,13 +1,16 @@
 name: Publish NuGet Package
 
 on:
-  push:
-    tags:
-      - 'v[0-9].*'
+  release:
+    types: [published]
   workflow_dispatch:
 
 permissions:
   id-token: write
+  contents: write # Release edit
+  packages: none
+  issues: none
+  pull-requests: none
 
 jobs:
   deploy:
@@ -31,8 +34,14 @@ jobs:
     - name: Run Tests
       run: dotnet test --configuration Release --no-build
 
+    - name: Parse version from tag
+      run: |
+        VERSION=${GITHUB_REF_NAME#v}
+        echo "VERSION=$VERSION"
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+
     - name: Pack NuGet Package
-      run: dotnet pack --configuration Release --no-build --output dist WslcWrapper/WslcWrapper.csproj
+      run: dotnet pack -p:Version=$VERSION --configuration Release --no-build --output dist WslcWrapper/WslcWrapper.csproj
       
     - name: NuGet Trusted Publishing Login
       uses: NuGet/login@v1
@@ -46,3 +55,11 @@ jobs:
           --source https://api.nuget.org/v3/index.json \
           --api-key ${{ steps.nuget_login.outputs.NUGET_API_KEY }} \
           --skip-duplicate
+    - name: Update GitHub Release with NuGet URL
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh release view ${{ github.ref_name }} --json body --template '{{.body}}' > existing_notes.txt
+        echo -e "\n\n### NuGet Packages\n📦 [SilentOrbit.WSLC](https://www.nuget.org/packages/SilentOrbit.WSLC/$VERSION)" >> existing_notes.txt
+        gh release edit ${{ github.ref_name }} \
+          --notes-file existing_notes.txt
