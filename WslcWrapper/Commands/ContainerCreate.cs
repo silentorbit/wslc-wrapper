@@ -19,7 +19,7 @@ public partial class ContainerCreate : WslcCommand
     /// <summary>
     /// Arguments to pass to container's init process
     /// </summary>
-    public required IList<string> Arguments { get; set; }
+    public IList<string>? Arguments { get; set; }
 
     /// <summary><![CDATA[
     /// Creates a container.
@@ -35,7 +35,7 @@ public partial class ContainerCreate : WslcCommand
     /// <param name="command">The command to run</param>
     /// <param name="arguments">Arguments to pass to container's init process</param>
     [SetsRequiredMembers]
-    public ContainerCreate(string image, string? command = null, params IList<string> arguments)
+    public ContainerCreate(string image, string? command = null, params IList<string>? arguments)
     {
         this.Image = image;
         this.Command = command;
@@ -50,7 +50,7 @@ public partial class ContainerCreate : WslcCommand
     /// <param name="command">The command to run</param>
     /// <param name="arguments">Arguments to pass to container's init process</param>
     [SetsRequiredMembers]
-    public ContainerCreate(IImageID image, string? command = null, params IList<string> arguments)
+    public ContainerCreate(IImageID image, string? command = null, params IList<string>? arguments)
     {
         this.Image = image.ImageID;
         this.Command = command;
@@ -261,7 +261,7 @@ public partial class ContainerCreate : WslcCommand
         args.AddOptional("--workdir", Workdir);
         args.Add(Image);
         args.AddOptional(Command);
-        args.AddRange(Arguments);
+        args.AddOptional(Arguments);
     }
 
 }

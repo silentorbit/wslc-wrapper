@@ -14,7 +14,7 @@ public partial class SystemSessionRun : WslcCommand
     /// <summary>
     /// Arguments to pass to the command being run
     /// </summary>
-    public required IList<string> Arguments { get; set; }
+    public IList<string>? Arguments { get; set; }
 
     /// <summary><![CDATA[
     /// Runs a command in an active session without a TTY. The command and its arguments are forwarded directly to the session. If no session is specified, the wslc default session will be used.
@@ -29,7 +29,7 @@ public partial class SystemSessionRun : WslcCommand
     /// <param name="command">The command to run</param>
     /// <param name="arguments">Arguments to pass to the command being run</param>
     [SetsRequiredMembers]
-    public SystemSessionRun(string command, params IList<string> arguments)
+    public SystemSessionRun(string command, params IList<string>? arguments)
     {
         this.Command = command;
         this.Arguments = arguments;
@@ -42,7 +42,7 @@ public partial class SystemSessionRun : WslcCommand
     {
         args.AddRange("system", "session", "run");
         args.Add(Command);
-        args.AddRange(Arguments);
+        args.AddOptional(Arguments);
     }
 
 }

@@ -19,7 +19,7 @@ public partial class ContainerRun : WslcCommand
     /// <summary>
     /// Arguments to pass to container's init process
     /// </summary>
-    public required IList<string> Arguments { get; set; }
+    public IList<string>? Arguments { get; set; }
 
     /// <summary><![CDATA[
     /// Runs a container. By default, the container is started in the foreground; use --detach to run in the background.
@@ -35,7 +35,7 @@ public partial class ContainerRun : WslcCommand
     /// <param name="command">The command to run</param>
     /// <param name="arguments">Arguments to pass to container's init process</param>
     [SetsRequiredMembers]
-    public ContainerRun(string image, string? command = null, params IList<string> arguments)
+    public ContainerRun(string image, string? command = null, params IList<string>? arguments)
     {
         this.Image = image;
         this.Command = command;
@@ -50,7 +50,7 @@ public partial class ContainerRun : WslcCommand
     /// <param name="command">The command to run</param>
     /// <param name="arguments">Arguments to pass to container's init process</param>
     [SetsRequiredMembers]
-    public ContainerRun(IImageID image, string? command = null, params IList<string> arguments)
+    public ContainerRun(IImageID image, string? command = null, params IList<string>? arguments)
     {
         this.Image = image.ImageID;
         this.Command = command;
@@ -268,7 +268,7 @@ public partial class ContainerRun : WslcCommand
         args.AddOptional("--workdir", Workdir);
         args.Add(Image);
         args.AddOptional(Command);
-        args.AddRange(Arguments);
+        args.AddOptional(Arguments);
     }
 
 }

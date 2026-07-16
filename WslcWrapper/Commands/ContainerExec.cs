@@ -19,7 +19,7 @@ public partial class ContainerExec : WslcCommand
     /// <summary>
     /// Arguments to pass to the command being executed inside the container
     /// </summary>
-    public required IList<string> Arguments { get; set; }
+    public IList<string>? Arguments { get; set; }
 
     /// <summary><![CDATA[
     /// Executes a command in a running container.
@@ -35,7 +35,7 @@ public partial class ContainerExec : WslcCommand
     /// <param name="command">The command to run</param>
     /// <param name="arguments">Arguments to pass to the command being executed inside the container</param>
     [SetsRequiredMembers]
-    public ContainerExec(string containerid, string command, params IList<string> arguments)
+    public ContainerExec(string containerid, string command, params IList<string>? arguments)
     {
         this.ContainerID = containerid;
         this.Command = command;
@@ -50,7 +50,7 @@ public partial class ContainerExec : WslcCommand
     /// <param name="command">The command to run</param>
     /// <param name="arguments">Arguments to pass to the command being executed inside the container</param>
     [SetsRequiredMembers]
-    public ContainerExec(IContainerID container, string command, params IList<string> arguments)
+    public ContainerExec(IContainerID container, string command, params IList<string>? arguments)
     {
         this.ContainerID = container.ContainerID;
         this.Command = command;
@@ -114,7 +114,7 @@ public partial class ContainerExec : WslcCommand
         args.AddOptional("--workdir", Workdir);
         args.Add(ContainerID);
         args.Add(Command);
-        args.AddRange(Arguments);
+        args.AddOptional(Arguments);
     }
 
 }

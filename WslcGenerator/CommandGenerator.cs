@@ -165,7 +165,9 @@ class CommandGenerator
                 case "List<string>":
                     code.AppendLine($"args.AddRange({a.PropertyName});");
                     break;
-
+                case "IList<string>?":
+                    code.AppendLine($"args.AddOptional({a.PropertyName});");
+                    break;
                 case "string?":
                     code.AppendLine($"args.AddOptional({a.PropertyName});");
                     break;
@@ -309,7 +311,7 @@ class CommandGenerator
         if (IsTypeNullable(cmd, a))
         {
             //Lists and bool are optional by their nature
-            if (value.Contains("List"))
+            if (key.StartsWith("--") && value.Contains("List"))
                 return value;
             if (value == "bool")
                 return value;
