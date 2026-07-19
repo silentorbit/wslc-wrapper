@@ -21,4 +21,6 @@ public class ContainerStatsItem : IContainerID
     [JsonExtensionData]
     public Dictionary<string, JsonElement>? UnmappedData { get; set; }
 #endif
+
+    public override string ToString() => Name ?? ID;
 }

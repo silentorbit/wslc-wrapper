@@ -49,4 +49,6 @@ public class VolumeArg : IListArg
         else
             return $"{HostPath}:{ContainerPath}";
     }
+
+    public override string ToString() => BuildArg();
 }

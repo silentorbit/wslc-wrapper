@@ -1,4 +1,3 @@
-﻿namespace SilentOrbit.WSLC.Data;
 
 /// <summary>
 /// <see cref="ImageList"/>.<see cref="WslcCommand{T}.RunJson"/>
@@ -12,14 +11,22 @@ public class ImageListItem : IImageID
     public required string Tag { get; set; }
 
     [JsonIgnore]
-    public string RepositoryOrId => Repository ?? Id;
-
-    [JsonIgnore]
-    string IImageID.ImageID => Repository ?? Id;
+    public string ImageID
+    {
+        get
+        {
+            if (Repository == null || Tag == null)
+                return Id;
+            else
+                return $"{Repository}:{Tag}";
+        }
+    }
 
 #if !DEBUG
     [JsonExtensionData]
     public Dictionary<string, JsonElement>? UnmappedData { get; set; }
 #endif
+
+    public override string ToString() => ImageID;
 }
 

@@ -60,4 +60,5 @@ public class PortMap : IListArg
             return $"{BindingAddress}:{HostPort}:{ContainerPort}";
     }
 
+    public override string ToString() => BuildArg();
 }

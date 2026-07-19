@@ -33,4 +33,6 @@ public class EnvValue : IListArg
     {
         return $"{Key}={Value}";
     }
+
+    public override string ToString() => BuildArg();
 }

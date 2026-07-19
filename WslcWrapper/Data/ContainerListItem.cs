@@ -43,6 +43,8 @@ public class ContainerListItem : IContainerID
         var d = DateTimeOffset.FromUnixTimeSeconds(l);
         return d.LocalDateTime;
     }
+
+    public override string ToString() => Name ?? Id;
 }
 
 public enum ContainerState
