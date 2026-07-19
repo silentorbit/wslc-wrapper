@@ -1,9 +1,6 @@
 ﻿namespace SilentOrbit.WSLC.Data;
 
-/// <summary>
-/// <see cref="NetworkInspect"/>.<see cref="WslcCommand{T}.RunJson"/>
-/// </summary>
-public class NetworkInspectItem : Docker.Network
+public abstract class UnmappedJsonBase
 {
 #if !DEBUG
     [JsonExtensionData]

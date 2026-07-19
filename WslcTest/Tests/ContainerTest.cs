@@ -6,7 +6,7 @@ namespace SilentOrbit.WSLC.Tests;
 public sealed class ContainerTest
 {
     [TestMethod]
-    public void TestAttach()
+    public void Attach()
     {
         var args = new ContainerAttach("id").BuildArgs();
         AssertList.AreEqual(["container", "attach", "id"], args);
@@ -16,7 +16,7 @@ public sealed class ContainerTest
     }
 
     [TestMethod]
-    public void TestCreate()
+    public void Create()
     {
         var args = new ContainerCreate("my-image")
         {
@@ -24,4 +24,20 @@ public sealed class ContainerTest
         }.BuildArgs();
         AssertList.AreEqual(["container", "create", "--name", "container-name", "my-image"], args);
     }
+
+#if DEBUG
+    /// <summary>
+    /// This test is only testing against existing containers.
+    /// </summary>
+    [TestMethod]
+    public void ListInspect()
+    {
+        var list = new ContainerList() { All = true }.RunJson();
+        foreach (var item in list)
+        {
+            var inspect = new ContainerInspect(item.Name).RunJson();
+        }
+        Assert.IsTrue(true);
+    }
+#endif
 }
