@@ -124,6 +124,36 @@ public partial class ContainerRun : WslcCommand
     public string? GPUs { get; set; }
 
     /// <summary><![CDATA[
+    /// Command to run to check container health
+    /// --health-cmd
+    /// ]]></summary>
+    public string? HealthCmd { get; set; }
+
+    /// <summary><![CDATA[
+    /// Time between running the health check (e.g. 30s, 1m30s)
+    /// --health-interval
+    /// ]]></summary>
+    public string? HealthInterval { get; set; }
+
+    /// <summary><![CDATA[
+    /// Consecutive failures needed to report the container as unhealthy
+    /// --health-retries
+    /// ]]></summary>
+    public int? HealthRetries { get; set; }
+
+    /// <summary><![CDATA[
+    /// Start period for the container to initialize before health-check countdown (e.g. 30s, 1m30s)
+    /// --health-start-period
+    /// ]]></summary>
+    public string? HealthStartPeriod { get; set; }
+
+    /// <summary><![CDATA[
+    /// Maximum time to allow one health check to run (e.g. 30s, 1m30s)
+    /// --health-timeout
+    /// ]]></summary>
+    public string? HealthTimeout { get; set; }
+
+    /// <summary><![CDATA[
     /// Container host name
     /// --hostname
     /// ]]></summary>
@@ -166,6 +196,12 @@ public partial class ContainerRun : WslcCommand
     public string? NetworkAlias { get; set; }
 
     /// <summary><![CDATA[
+    /// Disable any container-specified health check
+    /// --no-healthcheck
+    /// ]]></summary>
+    public bool NoHealthcheck { get; set; }
+
+    /// <summary><![CDATA[
     /// Publish a port from a container to host
     /// --publish
     /// ]]></summary>
@@ -194,6 +230,12 @@ public partial class ContainerRun : WslcCommand
     /// --stop-signal
     /// ]]></summary>
     public string? StopSignal { get; set; }
+
+    /// <summary><![CDATA[
+    /// Timeout (in seconds) to stop the container before killing it (-1 for no timeout)
+    /// --stop-timeout
+    /// ]]></summary>
+    public int? StopTimeout { get; set; }
 
     /// <summary><![CDATA[
     /// Mount tmpfs to the container at the given path
@@ -248,6 +290,11 @@ public partial class ContainerRun : WslcCommand
         args.AddOptional("--env", Env);
         args.AddOptional("--env-file", EnvFile);
         args.AddOptional("--gpus", GPUs);
+        args.AddOptional("--health-cmd", HealthCmd);
+        args.AddOptional("--health-interval", HealthInterval);
+        args.AddOptional("--health-retries", HealthRetries);
+        args.AddOptional("--health-start-period", HealthStartPeriod);
+        args.AddOptional("--health-timeout", HealthTimeout);
         args.AddOptional("--hostname", Hostname);
         args.AddFlag("--interactive", Interactive);
         args.AddOptional("--label", Label);
@@ -255,11 +302,13 @@ public partial class ContainerRun : WslcCommand
         args.AddOptional("--name", Name);
         args.AddOptional("--network", Network);
         args.AddOptional("--network-alias", NetworkAlias);
+        args.AddFlag("--no-healthcheck", NoHealthcheck);
         args.AddOptional("--publish", Publish);
         args.AddFlag("--publish-all", PublishAll);
         args.AddFlag("--rm", RM);
         args.AddOptional("--shm-size", ShmSize);
         args.AddOptional("--stop-signal", StopSignal);
+        args.AddOptional("--stop-timeout", StopTimeout);
         args.AddOptional("--tmpfs", Tmpfs);
         args.AddFlag("--tty", TTY);
         args.AddOptional("--ulimit", ULimit);

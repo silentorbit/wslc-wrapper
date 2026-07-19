@@ -23,6 +23,13 @@ static class ListExtension
             list.AddRange(key, value);
         }
 
+        public void AddOptional(string key, int? value)
+        {
+            if (value == null)
+                return;
+            list.AddRange(key, value.Value.ToString());
+        }
+
         public void AddFlag(string key, bool value)
         {
             if (value)

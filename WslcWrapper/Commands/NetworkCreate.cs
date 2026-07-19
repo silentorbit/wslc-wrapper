@@ -46,6 +46,24 @@ public partial class NetworkCreate : WslcCommand
     /// ]]></summary>
     public string? Label { get; set; }
 
+    /// <summary><![CDATA[
+    /// IPv4 or IPv6 gateway for the subnet
+    /// --gateway
+    /// ]]></summary>
+    public string? Gateway { get; set; }
+
+    /// <summary><![CDATA[
+    /// Restrict external access to the network
+    /// --internal
+    /// ]]></summary>
+    public bool Internal { get; set; }
+
+    /// <summary><![CDATA[
+    /// Subnet in CIDR format that represents a network segment
+    /// --subnet
+    /// ]]></summary>
+    public string? Subnet { get; set; }
+
     /// <summary>
     /// Return arguments for wslc.exe
     /// </summary>
@@ -55,6 +73,9 @@ public partial class NetworkCreate : WslcCommand
         args.AddOptional("--driver", Driver);
         args.AddOptional("--opt", Opt);
         args.AddOptional("--label", Label);
+        args.AddOptional("--gateway", Gateway);
+        args.AddFlag("--internal", Internal);
+        args.AddOptional("--subnet", Subnet);
         args.Add(NetworkName);
     }
 

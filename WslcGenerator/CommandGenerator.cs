@@ -137,6 +137,7 @@ class CommandGenerator
                 case "bool":
                     code.AppendLine($"""args.AddFlag("{o.Key}", {o.PropertyName});""");
                     break;
+                case "int?":
                 case "string?":
                     code.AppendLine($"""args.AddOptional("{o.Key}", {o.PropertyName});""");
                     break;

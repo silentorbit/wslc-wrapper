@@ -72,7 +72,18 @@
     "--version": "string",
     "--volume": "List<VolumeArg>",
     "volume-name": "string",
-    "--workdir": "string"
+    "--workdir": "string",
+    "--archive": "bool",
+    "--health-cmd": "string",
+    "--health-interval": "string",
+    "--health-retries": "int",
+    "--health-start-period": "string",
+    "--health-timeout": "string",
+    "--no-healthcheck": "bool",
+    "--stop-timeout": "int",
+    "--gateway": "string",
+    "--internal": "bool",
+    "--subnet": "string"
   },
   "NameMap": {
     "--all": "All",
@@ -147,7 +158,18 @@
     "--version": "Version",
     "--volume": "Volume",
     "volume-name": "VolumeName",
-    "--workdir": "Workdir"
+    "--workdir": "Workdir",
+    "--archive": "Archive",
+    "--health-cmd": "HealthCmd",
+    "--health-interval": "HealthInterval",
+    "--health-retries": "HealthRetries",
+    "--health-start-period": "HealthStartPeriod",
+    "--health-timeout": "HealthTimeout",
+    "--no-healthcheck": "NoHealthcheck",
+    "--stop-timeout": "StopTimeout",
+    "--gateway": "Gateway",
+    "--internal": "Internal",
+    "--subnet": "Subnet"
   },
   "ReturnMap": {
     "image list": "List<ImageListItem>",
