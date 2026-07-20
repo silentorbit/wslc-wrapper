@@ -1,8 +1,8 @@
 
 /// <summary>
-/// <see cref="ImageList"/>.<see cref="WslcCommand{T}.RunJson"/>
+/// <see cref="ImageList"/>
 /// </summary>
-public class ImageListItem : IImageID
+public class ImageListItem : UnmappedJsonBase, IImageID
 {
     public required long Created { get; set; }
     public required string Id { get; set; }
@@ -21,11 +21,6 @@ public class ImageListItem : IImageID
                 return $"{Repository}:{Tag}";
         }
     }
-
-#if !DEBUG
-    [JsonExtensionData]
-    public Dictionary<string, JsonElement>? UnmappedData { get; set; }
-#endif
 
     public override string ToString() => ImageID;
 }

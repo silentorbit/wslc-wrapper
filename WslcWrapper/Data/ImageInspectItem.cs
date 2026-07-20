@@ -5,10 +5,5 @@
 /// </summary>
 public class ImageInspectItem : Docker.ImageInspect
 {
-#if !DEBUG
-    [JsonExtensionData]
-    public Dictionary<string, JsonElement>? UnmappedData { get; set; }
-#endif
-
     public override string ToString() => Id;
 }

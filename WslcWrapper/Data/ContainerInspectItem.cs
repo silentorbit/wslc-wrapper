@@ -8,14 +8,9 @@
 public class ContainerInspectItem : Docker.ContainerInspectResponse, IContainerID
 {
     [JsonIgnore]
-    string IContainerID.ContainerID => Id;
+    string IContainerID.ContainerID => Name ?? Id;
 
     public required Docker.PortMap Ports { get => NetworkSettings.Ports; set => NetworkSettings.Ports = value; }
-
-#if !DEBUG
-    [JsonExtensionData]
-    public Dictionary<string, JsonElement>? UnmappedData { get; set; }
-#endif
 
     public override string ToString() => Name ?? Id;
 }

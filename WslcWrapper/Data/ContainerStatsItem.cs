@@ -3,7 +3,7 @@
 /// <summary>
 /// <see cref="ContainerStats"/>.<see cref="WslcCommandJson{T}.RunJson"/>
 /// </summary>
-public class ContainerStatsItem : IContainerID
+public class ContainerStatsItem : UnmappedJsonBase, IContainerID
 {
     public required string BlockIO { get; set; } // "0 B / 0 B",
     public required string CPUPerc { get; set; } // "0.00%",
@@ -15,12 +15,7 @@ public class ContainerStatsItem : IContainerID
     public required int PIDs { get; set; } // 0
 
     [JsonIgnore]
-    string IContainerID.ContainerID => ID;
-
-#if !DEBUG
-    [JsonExtensionData]
-    public Dictionary<string, JsonElement>? UnmappedData { get; set; }
-#endif
+    string IContainerID.ContainerID => Name ?? ID;
 
     public override string ToString() => Name ?? ID;
 }

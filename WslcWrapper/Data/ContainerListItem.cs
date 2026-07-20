@@ -6,7 +6,7 @@
 /// 
 /// <see cref="ContainerList"/>.<see cref="WslcCommandJson{T}.RunJson"/>
 /// </summary>
-public class ContainerListItem : IContainerID
+public class ContainerListItem : UnmappedJsonBase, IContainerID
 {
     public UInt64 CreatedAt { get; set; }
     public required string Id { get; set; }
@@ -15,11 +15,6 @@ public class ContainerListItem : IContainerID
     public required List<PortMap> Ports { get; set; }
     public ContainerState State { get; set; }
     public UInt64 StateChangedAt { get; set; }
-
-#if !DEBUG
-    [JsonExtensionData]
-    public Dictionary<string, JsonElement>? UnmappedData { get; set; }
-#endif
 
     //public string? Command { get; set; }
     //public int RunningFor { get; set; }
@@ -35,7 +30,7 @@ public class ContainerListItem : IContainerID
     public DateTime StateChanged => ToLocal(StateChangedAt);
 
     [JsonIgnore]
-    string IContainerID.ContainerID => Id;
+    string IContainerID.ContainerID => Name ?? Id;
 
     static DateTime ToLocal(UInt64 value)
     {

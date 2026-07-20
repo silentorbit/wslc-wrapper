@@ -1,14 +1,9 @@
 ﻿namespace SilentOrbit.WSLC.Data;
 
 /// <summary>
-/// <see cref="NetworkInspect"/>.<see cref="WslcCommandJson{T}.RunJson"/>
+/// <see cref="NetworkInspect"/>
 /// </summary>
 public class NetworkInspectItem : Docker.Network
 {
-#if !DEBUG
-    [JsonExtensionData]
-    public Dictionary<string, JsonElement>? UnmappedData { get; set; }
-#endif
-
     public override string ToString() => Name ?? Id;
 }
