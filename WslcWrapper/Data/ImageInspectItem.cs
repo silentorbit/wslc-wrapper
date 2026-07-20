@@ -1,7 +1,7 @@
 ﻿namespace SilentOrbit.WSLC.Data;
 
 /// <summary>
-/// <see cref="ImageInspect"/>.<see cref="WslcCommand{T}.RunJson"/>
+/// <see cref="ImageInspect"/>.<see cref="WslcCommandJson{T}.RunJson"/>
 /// </summary>
 public class ImageInspectItem : Docker.ImageInspect
 {
@@ -10,5 +10,5 @@ public class ImageInspectItem : Docker.ImageInspect
     public Dictionary<string, JsonElement>? UnmappedData { get; set; }
 #endif
 
-    public override string ToString() => Id
+    public override string ToString() => Id;
 }

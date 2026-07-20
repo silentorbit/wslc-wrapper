@@ -20,9 +20,14 @@ class CommandGenerator
     public Dictionary<string, string> NameMap { get; set; } = [];
     /// <summary>
     /// Key: Command chain: "image list"
-    /// Value: TReturn for WslcArguments<TReturn>
+    /// Value: TReturn for WslcCommandJson<TReturn>
     /// </summary>
-    public Dictionary<string, string> ReturnMap { get; set; } = [];
+    public Dictionary<string, string> ReturnJsonMap { get; set; } = [];
+    /// <summary>
+    /// Key: Command chain: "image list"
+    /// Value: TReturn for WslcCommandString<TReturn>
+    /// </summary>
+    public Dictionary<string, string> ReturnStringMap { get; set; } = [];
 
     #region Load/Save Config
 
@@ -80,14 +85,13 @@ class CommandGenerator
 
         var code = new CodeGenerator();
 
-        if (ReturnMap.TryGetValue(string.Join(" ", cmd.Command), out var returnType))
-            returnType = $"<{returnType}>";
+        var baseType = GetBaseType(cmd);
         var formatInterface = (cmd.Options.Any(o => o.Key == "--format")) ? ", IFormatJson" : null;
 
         code.AppendLine("namespace SilentOrbit.WSLC.Commands;");
         code.AppendLine();
         code.AppendSummary(cmd.Summary);
-        code.AppendLine($"public partial class {cmd.ClassName} : WslcCommand{returnType}{formatInterface}");
+        code.AppendLine($"public partial class {cmd.ClassName} : {baseType}{formatInterface}");
         code.AppendLine("{");
 
         //Argument properties
@@ -187,6 +191,25 @@ class CommandGenerator
 
         code.AppendLine("}");
         return code.ToString();
+    }
+
+    private string GetBaseType(CommandData cmd)
+    {
+        var key = string.Join(" ", cmd.Command);
+        string? returnType;
+
+        if (ReturnJsonMap.TryGetValue(key, out returnType))
+        {
+            Debug.Assert(ReturnStringMap.ContainsKey(key) == false);
+            return $"WslcCommandJson<{returnType}>";
+        }
+
+        if (ReturnStringMap.TryGetValue(key, out returnType))
+        {
+            return $"WslcCommandString<{returnType}>";
+        }
+
+        return "WslcCommand";
     }
 
     static void GenerateCtor(CodeGenerator code, CommandData cmd, IEnumerable<Argument> arguments)

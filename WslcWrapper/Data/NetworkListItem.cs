@@ -1,7 +1,7 @@
 ﻿namespace SilentOrbit.WSLC.Data;
 
 /// <summary>
-/// <see cref="NetworkList"/>.<see cref="WslcCommand{T}.RunJson"/>
+/// <see cref="NetworkList"/>.<see cref="WslcCommandJson{T}.RunJson"/>
 /// </summary>
 public class NetworkListItem
 {

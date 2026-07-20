@@ -4,7 +4,7 @@
 /// Creates a container.
 /// Usage: wslc container create [<options>] <image> [<command>] [<arguments>...]
 /// ]]></summary>
-public partial class ContainerCreate : WslcCommand
+public partial class ContainerCreate : WslcCommandString<IContainerID>
 {
     /// <summary>
     /// Image name

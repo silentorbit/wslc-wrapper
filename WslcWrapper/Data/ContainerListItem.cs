@@ -4,7 +4,7 @@
 /// Direct map of:
 /// wslc container list --format json
 /// 
-/// <see cref="ContainerList"/>.<see cref="WslcCommand{T}.RunJson"/>
+/// <see cref="ContainerList"/>.<see cref="WslcCommandJson{T}.RunJson"/>
 /// </summary>
 public class ContainerListItem : IContainerID
 {

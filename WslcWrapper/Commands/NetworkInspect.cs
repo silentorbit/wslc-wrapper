@@ -4,7 +4,7 @@
 /// Display detailed information on one or more networks.
 /// Usage: wslc network inspect [<options>] <network-name>
 /// ]]></summary>
-public partial class NetworkInspect : WslcCommand<List<NetworkInspectItem>>
+public partial class NetworkInspect : WslcCommandJson<List<NetworkInspectItem>>
 {
     /// <summary>
     /// Network name

@@ -4,7 +4,7 @@
 /// Lists containers. By default, only running containers are shown; use --all to include all containers.
 /// Usage: wslc container list [<options>]
 /// ]]></summary>
-public partial class ContainerList : WslcCommand<List<ContainerListItem>>, IFormatJson
+public partial class ContainerList : WslcCommandJson<List<ContainerListItem>>, IFormatJson
 {
     /// <summary><![CDATA[
     /// Lists containers. By default, only running containers are shown; use --all to include all containers.

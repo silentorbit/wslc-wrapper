@@ -33,21 +33,19 @@ public abstract class WslcCommand
 }
 
 /// <summary>
-/// Base class for all requests to wslc.exe
-/// With specified return type
+/// Base class for all requests to wslc.exe with JSON response.
 /// </summary>
-public abstract class WslcCommand<TReturn> : WslcCommand
+public abstract class WslcCommandJson<TReturn> : WslcCommand
     where TReturn : class
 {
-    public TReturn RunJson()
-    {
-        if (this is IFormatJson format)
-            format.Format = "json";
+    
+}
 
-        var result = WslcExe.Run(this);
+/// <summary>
+/// Base class for all requests to wslc.exe that return a string id.
+/// </summary>
+public abstract class WslcCommandString<TReturn> : WslcCommand
+    where TReturn : class
+{
 
-        result.ExpectOK();
-        return JsonSerializer.Deserialize<TReturn>(result.StdOut)
-            ?? throw new ArgumentNullException();
-    }
 }

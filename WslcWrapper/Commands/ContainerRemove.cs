@@ -4,7 +4,7 @@
 /// Removes containers.
 /// Usage: wslc container remove [<options>] <container-id>
 /// ]]></summary>
-public partial class ContainerRemove : WslcCommand
+public partial class ContainerRemove : WslcCommandString<IContainerID>
 {
     /// <summary>
     /// Container ID

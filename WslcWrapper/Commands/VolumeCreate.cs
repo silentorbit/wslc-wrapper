@@ -4,7 +4,7 @@
 /// Creates a named volume that can be attached to containers.
 /// Usage: wslc volume create [<options>] [<volume-name>]
 /// ]]></summary>
-public partial class VolumeCreate : WslcCommand
+public partial class VolumeCreate : WslcCommandString<IVolumeID>
 {
     /// <summary>
     /// Volume name

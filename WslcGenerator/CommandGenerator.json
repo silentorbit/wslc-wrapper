@@ -171,7 +171,7 @@
     "--internal": "Internal",
     "--subnet": "Subnet"
   },
-  "ReturnMap": {
+  "ReturnJsonMap": {
     "image list": "List<ImageListItem>",
     "image inspect": "List<ImageInspectItem>",
     "container list": "List<ContainerListItem>",
@@ -181,5 +181,13 @@
     "network list": "List<NetworkListItem>",
     "volume inspect": "List<VolumeInspectItem>",
     "volume list": "List<VolumeListItem>"
+  },
+  "ReturnStringMap": {
+    "volume create": "IVolumeID",
+    "volume remove": "IVolumeID",
+    "container create": "IContainerID",
+    "container start": "IContainerID",
+    "container stop": "IContainerID",
+    "container remove": "IContainerID"
   }
 }

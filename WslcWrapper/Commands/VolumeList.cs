@@ -4,7 +4,7 @@
 /// Lists all volumes in the session.
 /// Usage: wslc volume list [<options>]
 /// ]]></summary>
-public partial class VolumeList : WslcCommand<List<VolumeListItem>>, IFormatJson
+public partial class VolumeList : WslcCommandJson<List<VolumeListItem>>, IFormatJson
 {
     /// <summary><![CDATA[
     /// Lists all volumes in the session.

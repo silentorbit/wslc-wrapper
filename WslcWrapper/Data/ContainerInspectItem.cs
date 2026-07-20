@@ -1,7 +1,7 @@
 ﻿namespace SilentOrbit.WSLC.Data;
 
 /// <summary>
-/// <see cref="ContainerInspect"/>.<see cref="WslcCommand{T}.RunJson"/>
+/// <see cref="ContainerInspect"/>.<see cref="WslcCommandJson{T}.RunJson"/>
 /// 
 /// TODO: Get json structure from https://docs.docker.com/reference/api/engine/version/v1.55/#tag/Container/operation/ContainerInspect
 /// </summary>

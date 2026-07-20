@@ -4,7 +4,7 @@
 /// Removes one or more volumes. A volume cannot be removed if it is in use by a container.
 /// Usage: wslc volume remove [<options>] <volume-name>
 /// ]]></summary>
-public partial class VolumeRemove : WslcCommand
+public partial class VolumeRemove : WslcCommandString<IVolumeID>
 {
     /// <summary>
     /// Volume name

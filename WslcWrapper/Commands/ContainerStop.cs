@@ -4,7 +4,7 @@
 /// Stops containers.
 /// Usage: wslc container stop [<options>] [<container-id>]
 /// ]]></summary>
-public partial class ContainerStop : WslcCommand
+public partial class ContainerStop : WslcCommandString<IContainerID>
 {
     /// <summary>
     /// Container ID

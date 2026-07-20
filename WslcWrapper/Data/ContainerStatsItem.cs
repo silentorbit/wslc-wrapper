@@ -1,7 +1,7 @@
 ﻿namespace SilentOrbit.WSLC.Data;
 
 /// <summary>
-/// <see cref="ContainerStats"/>.<see cref="WslcCommand{T}.RunJson"/>
+/// <see cref="ContainerStats"/>.<see cref="WslcCommandJson{T}.RunJson"/>
 /// </summary>
 public class ContainerStatsItem : IContainerID
 {

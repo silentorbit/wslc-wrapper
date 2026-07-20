@@ -4,7 +4,7 @@
 /// Display detailed information about a container.
 /// Usage: wslc container inspect [<options>] <container-id>
 /// ]]></summary>
-public partial class ContainerInspect : WslcCommand<List<ContainerInspectItem>>
+public partial class ContainerInspect : WslcCommandJson<List<ContainerInspectItem>>
 {
     /// <summary>
     /// Container ID

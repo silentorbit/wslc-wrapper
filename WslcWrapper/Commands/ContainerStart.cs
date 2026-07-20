@@ -4,7 +4,7 @@
 /// Starts a container.
 /// Usage: wslc container start [<options>] <container-id>
 /// ]]></summary>
-public partial class ContainerStart : WslcCommand
+public partial class ContainerStart : WslcCommandString<IContainerID>
 {
     /// <summary>
     /// Container ID

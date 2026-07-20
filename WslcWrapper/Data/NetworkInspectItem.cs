@@ -1,7 +1,7 @@
 ﻿namespace SilentOrbit.WSLC.Data;
 
 /// <summary>
-/// <see cref="NetworkInspect"/>.<see cref="WslcCommand{T}.RunJson"/>
+/// <see cref="NetworkInspect"/>.<see cref="WslcCommandJson{T}.RunJson"/>
 /// </summary>
 public class NetworkInspectItem : Docker.Network
 {
