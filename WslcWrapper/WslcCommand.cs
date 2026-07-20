@@ -2,26 +2,6 @@
 
 /// <summary>
 /// Base class for all requests to wslc.exe
-/// With specified return type
-/// </summary>
-public abstract class WslcCommand<TReturn> : WslcCommand
-    where TReturn : class
-{
-    public TReturn RunJson()
-    {
-        if (this is IFormatJson format)
-            format.Format = "json";
-
-        var result = Run();
-
-        result.ExpectOK();
-        return JsonSerializer.Deserialize<TReturn>(result.StdOut)
-            ?? throw new ArgumentNullException();
-    }
-}
-
-/// <summary>
-/// Base class for all requests to wslc.exe
 /// </summary>
 public abstract class WslcCommand
 {
@@ -35,12 +15,6 @@ public abstract class WslcCommand
     /// --help
     /// </summary>
     public bool Help { get; set; }
-
-    public WslcResult Run()
-    {
-        var args = BuildArgs();
-        return WslcExe.Run(args);
-    }
 
     public List<string> BuildArgs()
     {
@@ -58,3 +32,22 @@ public abstract class WslcCommand
     protected abstract void BuildArgs(List<string> args);
 }
 
+/// <summary>
+/// Base class for all requests to wslc.exe
+/// With specified return type
+/// </summary>
+public abstract class WslcCommand<TReturn> : WslcCommand
+    where TReturn : class
+{
+    public TReturn RunJson()
+    {
+        if (this is IFormatJson format)
+            format.Format = "json";
+
+        var result = WslcExe.Run(this);
+
+        result.ExpectOK();
+        return JsonSerializer.Deserialize<TReturn>(result.StdOut)
+            ?? throw new ArgumentNullException();
+    }
+}

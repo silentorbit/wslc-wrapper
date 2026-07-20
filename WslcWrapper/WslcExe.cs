@@ -6,6 +6,58 @@ namespace SilentOrbit.WSLC;
 
 public static class WslcExe
 {
+    /// <summary>
+    /// Run and return deserialized JSON output.
+    /// </summary>
+    public static TReturn RunJson<TReturn>(this WslcCommandJson<TReturn> command)
+        where TReturn : class
+    {
+        if (command is IFormatJson format)
+            format.Format = "json";
+
+        var json = RunString(command);
+
+        return JsonSerializer.Deserialize<TReturn>(json)
+            ?? throw new ArgumentNullException();
+    }
+
+    /// <summary>
+    /// Run and return output as ID
+    /// </summary>
+    public static IContainerID RunID(this WslcCommandString<IContainerID> command)
+    {
+        var id = RunString(command);
+        return new OnlyContainerID(id);
+    }
+
+    /// <summary>
+    /// Run and return output as ID
+    /// </summary>
+    public static IVolumeID RunID(this WslcCommandString<IVolumeID> command)
+    {
+        var id = RunString(command);
+        return new OnlyVolumeID(id);
+    }
+
+    /// <summary>
+    /// Run and return output as a string.
+    /// </summary>
+    public static string RunString(this WslcCommand command)
+    {
+        var result = Run(command);
+
+        result.ExpectOK();
+
+        var output = result.StdOut.Trim();
+        return output;
+    }
+
+    public static WslcResult Run(this WslcCommand command)
+    {
+        var args = command.BuildArgs();
+        return Run(args);
+    }
+
     public static WslcResult Run(IList<string> args)
     {
         if (args.Any(string.IsNullOrWhiteSpace))
