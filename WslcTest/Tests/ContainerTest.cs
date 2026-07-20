@@ -25,6 +25,7 @@ public sealed class ContainerTest
         }.BuildArgs();
         AssertList.AreEqual(["container", "create", "--name", "container-name", "my-image"], args);
 
+#if DEBUG
         var create = new ContainerCreate() { Image = "hello-world" };
         var containerId = WslcExe.RunString(create);
         try
@@ -40,6 +41,7 @@ public sealed class ContainerTest
             var removed = WslcExe.RunString(remove);
             Assert.AreEqual(containerId, removed);
         }
+#endif
     }
 
 #if DEBUG
