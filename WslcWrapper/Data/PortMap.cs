@@ -13,7 +13,7 @@ public class PortMap : IListArg
     public string? BindingAddress { get; set; }
     public required ushort HostPort { get; set; }
     public required ushort ContainerPort { get; set; }
-    public Protocol Protocol { get; set; }
+    public Protocol Protocol { get; set; } = Protocol.TCP;
 
     public PortMap() { }
 
