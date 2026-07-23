@@ -12,5 +12,7 @@ public class ContainerInspectItem : Docker.ContainerInspectResponse, IContainerI
 
     public required Docker.PortMap Ports { get => NetworkSettings.Ports; set => NetworkSettings.Ports = value; }
 
+    public required IDictionary<string, string> Labels { get; set; }
+
     public override string ToString() => Name ?? Id;
 }
