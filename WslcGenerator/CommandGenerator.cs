@@ -298,7 +298,7 @@ class CommandGenerator
             a.PropertyType = GetCodeArgumentType(cmd, a);
             a.PropertyName = GetCodePropertyName(a);
             a.CtorParameterType = a.PropertyType;
-            a.CtorParameterName = a.PropertyName.ToLowerInvariant();
+            a.CtorParameterName = GetCodeParameterName(a);
             a.CtorPropertyValue = a.CtorParameterName;
         }
 
@@ -318,6 +318,12 @@ class CommandGenerator
         var name = string.Concat(parts.Select(ToUppercase));
 
         NameMap[a.Key] = name;
+        return name;
+    }
+
+    string GetCodeParameterName(Argument a)
+    {
+        var name = a.Key.Replace('-', '_');
         return name;
     }
 

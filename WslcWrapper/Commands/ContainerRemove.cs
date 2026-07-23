@@ -21,11 +21,11 @@ public partial class ContainerRemove : WslcCommandString<IContainerID>
     /// Removes containers.
     /// Usage: wslc container remove [<options>] <container-id>
     /// ]]></summary>
-    /// <param name="containerid">Container ID</param>
+    /// <param name="container_id">Container ID</param>
     [SetsRequiredMembers]
-    public ContainerRemove(string containerid)
+    public ContainerRemove(string container_id)
     {
-        this.ContainerID = containerid;
+        this.ContainerID = container_id;
     }
 
     /// <summary><![CDATA[

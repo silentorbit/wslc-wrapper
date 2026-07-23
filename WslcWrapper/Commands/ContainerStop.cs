@@ -21,11 +21,11 @@ public partial class ContainerStop : WslcCommandString<IContainerID>
     /// Stops containers.
     /// Usage: wslc container stop [<options>] [<container-id>]
     /// ]]></summary>
-    /// <param name="containerid">Container ID</param>
+    /// <param name="container_id">Container ID</param>
     [SetsRequiredMembers]
-    public ContainerStop(string? containerid = null)
+    public ContainerStop(string? container_id = null)
     {
-        this.ContainerID = containerid;
+        this.ContainerID = container_id;
     }
 
     /// <summary><![CDATA[

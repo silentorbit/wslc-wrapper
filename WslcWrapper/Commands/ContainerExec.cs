@@ -31,13 +31,13 @@ public partial class ContainerExec : WslcCommand
     /// Executes a command in a running container.
     /// Usage: wslc container exec [<options>] <container-id> <command> [<arguments>...]
     /// ]]></summary>
-    /// <param name="containerid">Container ID</param>
+    /// <param name="container_id">Container ID</param>
     /// <param name="command">The command to run</param>
     /// <param name="arguments">Arguments to pass to the command being executed inside the container</param>
     [SetsRequiredMembers]
-    public ContainerExec(string containerid, string command, params IList<string>? arguments)
+    public ContainerExec(string container_id, string command, params IList<string>? arguments)
     {
-        this.ContainerID = containerid;
+        this.ContainerID = container_id;
         this.Command = command;
         this.Arguments = arguments;
     }

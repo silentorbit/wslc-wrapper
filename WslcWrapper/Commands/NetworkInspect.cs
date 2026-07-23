@@ -21,11 +21,11 @@ public partial class NetworkInspect : WslcCommandJson<List<NetworkInspectItem>>
     /// Display detailed information on one or more networks.
     /// Usage: wslc network inspect [<options>] <network-name>
     /// ]]></summary>
-    /// <param name="networkname">Network name</param>
+    /// <param name="network_name">Network name</param>
     [SetsRequiredMembers]
-    public NetworkInspect(string networkname)
+    public NetworkInspect(string network_name)
     {
-        this.NetworkName = networkname;
+        this.NetworkName = network_name;
     }
 
     /// <summary>

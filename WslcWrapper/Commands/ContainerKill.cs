@@ -21,11 +21,11 @@ public partial class ContainerKill : WslcCommand
     /// Kills containers.
     /// Usage: wslc container kill [<options>] <container-id>
     /// ]]></summary>
-    /// <param name="containerid">Container ID</param>
+    /// <param name="container_id">Container ID</param>
     [SetsRequiredMembers]
-    public ContainerKill(string containerid)
+    public ContainerKill(string container_id)
     {
-        this.ContainerID = containerid;
+        this.ContainerID = container_id;
     }
 
     /// <summary><![CDATA[

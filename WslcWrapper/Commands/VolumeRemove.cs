@@ -21,11 +21,11 @@ public partial class VolumeRemove : WslcCommandString<IVolumeID>
     /// Removes one or more volumes. A volume cannot be removed if it is in use by a container.
     /// Usage: wslc volume remove [<options>] <volume-name>
     /// ]]></summary>
-    /// <param name="volumename">Volume name</param>
+    /// <param name="volume_name">Volume name</param>
     [SetsRequiredMembers]
-    public VolumeRemove(string volumename)
+    public VolumeRemove(string volume_name)
     {
-        this.VolumeName = volumename;
+        this.VolumeName = volume_name;
     }
 
     /// <summary><![CDATA[

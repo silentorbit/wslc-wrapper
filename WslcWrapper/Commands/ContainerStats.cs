@@ -21,11 +21,11 @@ public partial class ContainerStats : WslcCommandJson<List<ContainerStatsItem>>,
     /// Display a snapshot of a running container's resource usage: CPU, memory, network I/O, block I/O, and PIDs.
     /// Usage: wslc container stats [<options>] [<container-id>]
     /// ]]></summary>
-    /// <param name="containerid">Container ID</param>
+    /// <param name="container_id">Container ID</param>
     [SetsRequiredMembers]
-    public ContainerStats(string? containerid = null)
+    public ContainerStats(string? container_id = null)
     {
-        this.ContainerID = containerid;
+        this.ContainerID = container_id;
     }
 
     /// <summary><![CDATA[

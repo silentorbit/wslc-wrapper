@@ -21,11 +21,11 @@ public partial class ContainerInspect : WslcCommandJson<List<ContainerInspectIte
     /// Display detailed information about a container.
     /// Usage: wslc container inspect [<options>] <container-id>
     /// ]]></summary>
-    /// <param name="containerid">Container ID</param>
+    /// <param name="container_id">Container ID</param>
     [SetsRequiredMembers]
-    public ContainerInspect(string containerid)
+    public ContainerInspect(string container_id)
     {
-        this.ContainerID = containerid;
+        this.ContainerID = container_id;
     }
 
     /// <summary><![CDATA[

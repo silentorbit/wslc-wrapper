@@ -26,25 +26,25 @@ public partial class NetworkDisconnect : WslcCommand
     /// Disconnects a container from an existing network.
     /// Usage: wslc network disconnect [<options>] <network-name> <container-id>
     /// ]]></summary>
-    /// <param name="networkname">Network name</param>
-    /// <param name="containerid">Container ID</param>
+    /// <param name="network_name">Network name</param>
+    /// <param name="container_id">Container ID</param>
     [SetsRequiredMembers]
-    public NetworkDisconnect(string networkname, string containerid)
+    public NetworkDisconnect(string network_name, string container_id)
     {
-        this.NetworkName = networkname;
-        this.ContainerID = containerid;
+        this.NetworkName = network_name;
+        this.ContainerID = container_id;
     }
 
     /// <summary><![CDATA[
     /// Disconnects a container from an existing network.
     /// Usage: wslc network disconnect [<options>] <network-name> <container-id>
     /// ]]></summary>
-    /// <param name="networkname">Network name</param>
+    /// <param name="network_name">Network name</param>
     /// <param name="container">Container ID</param>
     [SetsRequiredMembers]
-    public NetworkDisconnect(string networkname, IContainerID container)
+    public NetworkDisconnect(string network_name, IContainerID container)
     {
-        this.NetworkName = networkname;
+        this.NetworkName = network_name;
         this.ContainerID = container.ContainerID;
     }
 

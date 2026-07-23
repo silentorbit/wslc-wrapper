@@ -21,11 +21,11 @@ public partial class NetworkRemove : WslcCommand
     /// Removes one or more networks.
     /// Usage: wslc network remove [<options>] <network-name>
     /// ]]></summary>
-    /// <param name="networkname">Network name</param>
+    /// <param name="network_name">Network name</param>
     [SetsRequiredMembers]
-    public NetworkRemove(string networkname)
+    public NetworkRemove(string network_name)
     {
-        this.NetworkName = networkname;
+        this.NetworkName = network_name;
     }
 
     /// <summary><![CDATA[

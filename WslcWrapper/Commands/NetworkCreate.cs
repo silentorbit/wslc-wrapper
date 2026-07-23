@@ -21,11 +21,11 @@ public partial class NetworkCreate : WslcCommand
     /// Creates a new network.
     /// Usage: wslc network create [<options>] <network-name>
     /// ]]></summary>
-    /// <param name="networkname">Network name</param>
+    /// <param name="network_name">Network name</param>
     [SetsRequiredMembers]
-    public NetworkCreate(string networkname)
+    public NetworkCreate(string network_name)
     {
-        this.NetworkName = networkname;
+        this.NetworkName = network_name;
     }
 
     /// <summary><![CDATA[

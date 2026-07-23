@@ -21,11 +21,11 @@ public partial class ContainerExport : WslcCommand
     /// Exports a container's filesystem as a tar archive.
     /// Usage: wslc container export [<options>] <container-id>
     /// ]]></summary>
-    /// <param name="containerid">Container ID</param>
+    /// <param name="container_id">Container ID</param>
     [SetsRequiredMembers]
-    public ContainerExport(string containerid)
+    public ContainerExport(string container_id)
     {
-        this.ContainerID = containerid;
+        this.ContainerID = container_id;
     }
 
     /// <summary><![CDATA[

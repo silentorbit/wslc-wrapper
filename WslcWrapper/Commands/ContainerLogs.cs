@@ -21,11 +21,11 @@ public partial class ContainerLogs : WslcCommand
     /// View logs for a container.
     /// Usage: wslc container logs [<options>] <container-id>
     /// ]]></summary>
-    /// <param name="containerid">Container ID</param>
+    /// <param name="container_id">Container ID</param>
     [SetsRequiredMembers]
-    public ContainerLogs(string containerid)
+    public ContainerLogs(string container_id)
     {
-        this.ContainerID = containerid;
+        this.ContainerID = container_id;
     }
 
     /// <summary><![CDATA[

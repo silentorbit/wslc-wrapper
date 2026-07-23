@@ -21,11 +21,11 @@ public partial class ContainerAttach : WslcCommand
     /// Attaches to a container.
     /// Usage: wslc container attach [<options>] <container-id>
     /// ]]></summary>
-    /// <param name="containerid">Container ID</param>
+    /// <param name="container_id">Container ID</param>
     [SetsRequiredMembers]
-    public ContainerAttach(string containerid)
+    public ContainerAttach(string container_id)
     {
-        this.ContainerID = containerid;
+        this.ContainerID = container_id;
     }
 
     /// <summary><![CDATA[

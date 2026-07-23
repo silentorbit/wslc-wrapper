@@ -21,11 +21,11 @@ public partial class VolumeCreate : WslcCommandString<IVolumeID>
     /// Creates a named volume that can be attached to containers.
     /// Usage: wslc volume create [<options>] [<volume-name>]
     /// ]]></summary>
-    /// <param name="volumename">Volume name</param>
+    /// <param name="volume_name">Volume name</param>
     [SetsRequiredMembers]
-    public VolumeCreate(string? volumename = null)
+    public VolumeCreate(string? volume_name = null)
     {
-        this.VolumeName = volumename;
+        this.VolumeName = volume_name;
     }
 
     /// <summary><![CDATA[

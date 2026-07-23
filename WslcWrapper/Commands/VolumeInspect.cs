@@ -21,11 +21,11 @@ public partial class VolumeInspect : WslcCommandJson<List<VolumeInspectItem>>
     /// Display detailed information on one or more volumes.
     /// Usage: wslc volume inspect [<options>] <volume-name>
     /// ]]></summary>
-    /// <param name="volumename">Volume name</param>
+    /// <param name="volume_name">Volume name</param>
     [SetsRequiredMembers]
-    public VolumeInspect(string volumename)
+    public VolumeInspect(string volume_name)
     {
-        this.VolumeName = volumename;
+        this.VolumeName = volume_name;
     }
 
     /// <summary>

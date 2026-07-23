@@ -21,11 +21,11 @@ public partial class ContainerStart : WslcCommandString<IContainerID>
     /// Starts a container.
     /// Usage: wslc container start [<options>] <container-id>
     /// ]]></summary>
-    /// <param name="containerid">Container ID</param>
+    /// <param name="container_id">Container ID</param>
     [SetsRequiredMembers]
-    public ContainerStart(string containerid)
+    public ContainerStart(string container_id)
     {
-        this.ContainerID = containerid;
+        this.ContainerID = container_id;
     }
 
     /// <summary><![CDATA[
