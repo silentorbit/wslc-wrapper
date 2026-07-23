@@ -22,7 +22,7 @@ public partial class ContainerList : WslcCommandJson<List<ContainerListItem>>, I
     /// Filter output based on conditions provided
     /// --filter
     /// ]]></summary>
-    public string? Filter { get; set; }
+    public IList<string> Filter { get; set; } = [];
 
     /// <summary><![CDATA[
     /// Output formatting (json or table) (Default: table)
@@ -61,7 +61,8 @@ public partial class ContainerList : WslcCommandJson<List<ContainerListItem>>, I
     {
         args.AddRange("container", "list");
         args.AddFlag("--all", All);
-        args.AddOptional("--filter", Filter);
+        foreach (var v in Filter)
+            args.AddRange("--filter", v);
         args.AddOptional("--format", Format);
         args.AddOptional("--last", Last);
         args.AddOptional("--latest", Latest);

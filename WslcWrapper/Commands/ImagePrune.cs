@@ -22,7 +22,7 @@ public partial class ImagePrune : WslcCommand
     /// Filter output based on conditions provided
     /// --filter
     /// ]]></summary>
-    public string? Filter { get; set; }
+    public IList<string> Filter { get; set; } = [];
 
     /// <summary>
     /// Return arguments for wslc.exe
@@ -31,7 +31,8 @@ public partial class ImagePrune : WslcCommand
     {
         args.AddRange("image", "prune");
         args.AddFlag("--all", All);
-        args.AddOptional("--filter", Filter);
+        foreach (var v in Filter)
+            args.AddRange("--filter", v);
     }
 
 }

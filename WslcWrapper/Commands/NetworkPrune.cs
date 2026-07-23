@@ -16,7 +16,7 @@ public partial class NetworkPrune : WslcCommand
     /// Filter output based on conditions provided
     /// --filter
     /// ]]></summary>
-    public string? Filter { get; set; }
+    public IList<string> Filter { get; set; } = [];
 
     /// <summary>
     /// Return arguments for wslc.exe
@@ -24,7 +24,8 @@ public partial class NetworkPrune : WslcCommand
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("network", "prune");
-        args.AddOptional("--filter", Filter);
+        foreach (var v in Filter)
+            args.AddRange("--filter", v);
     }
 
 }

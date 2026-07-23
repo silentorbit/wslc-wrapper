@@ -19,7 +19,7 @@
     "--env-file": "string",
     "file": "string",
     "--file": "string",
-    "--filter": "string",
+    "--filter": "IList<string>",
     "--follow": "bool",
     "--force": "bool",
     "--format": "string",

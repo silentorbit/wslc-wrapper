@@ -16,7 +16,7 @@ public partial class ImageList : WslcCommandJson<List<ImageListItem>>, IFormatJs
     /// Filter output based on conditions provided
     /// --filter
     /// ]]></summary>
-    public string? Filter { get; set; }
+    public IList<string> Filter { get; set; } = [];
 
     /// <summary><![CDATA[
     /// Output formatting (json or table) (Default: table)
@@ -48,7 +48,8 @@ public partial class ImageList : WslcCommandJson<List<ImageListItem>>, IFormatJs
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("image", "list");
-        args.AddOptional("--filter", Filter);
+        foreach (var v in Filter)
+            args.AddRange("--filter", v);
         args.AddOptional("--format", Format);
         args.AddFlag("--no-trunc", NoTrunc);
         args.AddFlag("--quiet", Quiet);
