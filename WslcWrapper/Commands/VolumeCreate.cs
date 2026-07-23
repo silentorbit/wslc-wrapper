@@ -44,7 +44,7 @@ public partial class VolumeCreate : WslcCommandString<IVolumeID>
     /// Set metadata on an object
     /// --label
     /// ]]></summary>
-    public IList<EnvValue> Label { get; set; } = [];
+    public Dictionary<string, string> Label { get; set; } = [];
 
     /// <summary>
     /// Return arguments for wslc.exe

@@ -49,8 +49,17 @@ static class ListExtension
             if (values == null)
                 return;
 
-            foreach(var value in values)
+            foreach (var value in values)
                 list.AddRange(key, value.BuildArg());
+        }
+
+        public void AddOptional(string key, IDictionary<string, string>? values)
+        {
+            if (values == null)
+                return;
+
+            foreach (var value in values)
+                list.AddRange(key, $"{value.Key}={value.Value}");
         }
     }
 }

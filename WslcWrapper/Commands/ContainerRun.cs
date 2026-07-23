@@ -109,7 +109,7 @@ public partial class ContainerRun : WslcCommand
     /// Key=Value pairs for environment variables
     /// --env
     /// ]]></summary>
-    public IList<EnvValue> Env { get; set; } = [];
+    public Dictionary<string, string> Env { get; set; } = [];
 
     /// <summary><![CDATA[
     /// File containing key=value pairs of env variables
@@ -169,7 +169,7 @@ public partial class ContainerRun : WslcCommand
     /// Set metadata on an object
     /// --label
     /// ]]></summary>
-    public IList<EnvValue> Label { get; set; } = [];
+    public Dictionary<string, string> Label { get; set; } = [];
 
     /// <summary><![CDATA[
     /// Memory limit (e.g. 512M, 1G)

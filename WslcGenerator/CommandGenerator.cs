@@ -118,7 +118,9 @@ class CommandGenerator
         //Options
         foreach (var o in cmd.Options)
         {
-            var setNew = o.PropertyType.StartsWith("IList<") ? " = [];" : null;
+            string? setNew = null;
+            if (o.PropertyType.StartsWith("IList<") || o.PropertyType.StartsWith("Dictionary<"))
+                setNew = " = [];";
 
             code.AppendSummary(o.Summary, o.Key);
             code.AppendLine($"public {o.PropertyType} {o.PropertyName} {{ get; set; }}{setNew}");
@@ -151,8 +153,8 @@ class CommandGenerator
                     break;
 
                 case "IList<PortMap>":
-                case "IList<EnvValue>":
                 case "IList<VolumeArg>":
+                case "Dictionary<string, string>":
                     code.AppendLine($"""args.AddOptional("{o.Key}", {o.PropertyName});""");
                     break;
 
@@ -334,7 +336,7 @@ class CommandGenerator
         if (IsTypeNullable(cmd, a))
         {
             //Lists and bool are optional by their nature
-            if (key.StartsWith("--") && value.Contains("List"))
+            if (key.StartsWith("--") && (value.StartsWith("IList<") || value.StartsWith("Dictionary<")))
                 return value;
             if (value == "bool")
                 return value;
