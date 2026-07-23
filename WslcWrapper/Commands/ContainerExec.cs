@@ -67,7 +67,7 @@ public partial class ContainerExec : WslcCommand
     /// Key=Value pairs for environment variables
     /// --env
     /// ]]></summary>
-    public List<EnvValue> Env { get; set; } = [];
+    public IList<EnvValue> Env { get; set; } = [];
 
     /// <summary><![CDATA[
     /// File containing key=value pairs of env variables

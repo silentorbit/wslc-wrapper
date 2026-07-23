@@ -118,7 +118,7 @@ class CommandGenerator
         //Options
         foreach (var o in cmd.Options)
         {
-            var setNew = o.PropertyType.StartsWith("List<") ? " = [];" : null;
+            var setNew = o.PropertyType.StartsWith("IList<") ? " = [];" : null;
 
             code.AppendSummary(o.Summary, o.Key);
             code.AppendLine($"public {o.PropertyType} {o.PropertyName} {{ get; set; }}{setNew}");
@@ -145,15 +145,14 @@ class CommandGenerator
                 case "string?":
                     code.AppendLine($"""args.AddOptional("{o.Key}", {o.PropertyName});""");
                     break;
-                case "List<string>":
                 case "IList<string>":
                     code.AppendLine($"""foreach (var v in {o.PropertyName})""");
                     code.AppendLine($"""args.AddRange("{o.Key}", v);""");
                     break;
 
-                case "List<PortMap>":
-                case "List<EnvValue>":
-                case "List<VolumeArg>":
+                case "IList<PortMap>":
+                case "IList<EnvValue>":
+                case "IList<VolumeArg>":
                     code.AppendLine($"""args.AddOptional("{o.Key}", {o.PropertyName});""");
                     break;
 

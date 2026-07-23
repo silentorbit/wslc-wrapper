@@ -109,7 +109,7 @@ public partial class ContainerRun : WslcCommand
     /// Key=Value pairs for environment variables
     /// --env
     /// ]]></summary>
-    public List<EnvValue> Env { get; set; } = [];
+    public IList<EnvValue> Env { get; set; } = [];
 
     /// <summary><![CDATA[
     /// File containing key=value pairs of env variables
@@ -169,7 +169,7 @@ public partial class ContainerRun : WslcCommand
     /// Set metadata on an object
     /// --label
     /// ]]></summary>
-    public string? Label { get; set; }
+    public IList<EnvValue> Label { get; set; } = [];
 
     /// <summary><![CDATA[
     /// Memory limit (e.g. 512M, 1G)
@@ -205,7 +205,7 @@ public partial class ContainerRun : WslcCommand
     /// Publish a port from a container to host
     /// --publish
     /// ]]></summary>
-    public List<PortMap> Publish { get; set; } = [];
+    public IList<PortMap> Publish { get; set; } = [];
 
     /// <summary><![CDATA[
     /// Publish all exposed ports to random host ports
@@ -265,7 +265,7 @@ public partial class ContainerRun : WslcCommand
     /// Bind mount a volume to the container
     /// --volume
     /// ]]></summary>
-    public List<VolumeArg> Volume { get; set; } = [];
+    public IList<VolumeArg> Volume { get; set; } = [];
 
     /// <summary><![CDATA[
     /// Working directory inside the container

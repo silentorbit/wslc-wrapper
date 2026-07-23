@@ -44,7 +44,7 @@ public partial class NetworkCreate : WslcCommand
     /// Network metadata setting
     /// --label
     /// ]]></summary>
-    public string? Label { get; set; }
+    public IList<EnvValue> Label { get; set; } = [];
 
     /// <summary><![CDATA[
     /// IPv4 or IPv6 gateway for the subnet

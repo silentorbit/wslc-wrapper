@@ -56,7 +56,7 @@ public partial class ImageBuild : WslcCommand
     /// Set metadata on an object
     /// --label
     /// ]]></summary>
-    public string? Label { get; set; }
+    public IList<EnvValue> Label { get; set; } = [];
 
     /// <summary><![CDATA[
     /// Do not use cache when building the image
