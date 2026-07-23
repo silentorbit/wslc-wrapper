@@ -235,7 +235,8 @@ class CommandGenerator
     {
         var hasContainerId = args.Any(a => a.Key == "container-id");
         var hasImage = args.Any(a => a.Key == "image");
-        if (!hasContainerId && !hasImage)
+        var hasVolume = args.Any(a => a.Key == "volume-name");
+        if (!hasContainerId && !hasImage && !hasVolume)
             yield break;
 
         foreach (var a in args)
@@ -260,6 +261,17 @@ class CommandGenerator
                         CtorParameterName = "image",
                         CtorParameterType = "IImageID",
                         CtorPropertyValue = "image.ImageID",
+                    };
+                    break;
+
+                case "volume-name":
+                    yield return new Argument(a.Key, a.Summary)
+                    {
+                        PropertyType = a.PropertyType,
+                        PropertyName = a.PropertyName,
+                        CtorParameterName = "volume",
+                        CtorParameterType = "IVolumeID",
+                        CtorPropertyValue = "volume.VolumeID",
                     };
                     break;
 

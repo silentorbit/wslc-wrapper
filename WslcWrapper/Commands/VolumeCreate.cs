@@ -29,6 +29,17 @@ public partial class VolumeCreate : WslcCommandString<IVolumeID>
     }
 
     /// <summary><![CDATA[
+    /// Creates a named volume that can be attached to containers.
+    /// Usage: wslc volume create [<options>] [<volume-name>]
+    /// ]]></summary>
+    /// <param name="volume">Volume name</param>
+    [SetsRequiredMembers]
+    public VolumeCreate(IVolumeID volume)
+    {
+        this.VolumeName = volume.VolumeID;
+    }
+
+    /// <summary><![CDATA[
     /// Specify volume driver name, e.g. 'guest' or 'vhd' (default: guest)
     /// --driver
     /// ]]></summary>

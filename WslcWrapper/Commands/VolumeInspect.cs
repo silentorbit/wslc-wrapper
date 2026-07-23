@@ -28,6 +28,17 @@ public partial class VolumeInspect : WslcCommandJson<List<VolumeInspectItem>>
         this.VolumeName = volume_name;
     }
 
+    /// <summary><![CDATA[
+    /// Display detailed information on one or more volumes.
+    /// Usage: wslc volume inspect [<options>] <volume-name>
+    /// ]]></summary>
+    /// <param name="volume">Volume name</param>
+    [SetsRequiredMembers]
+    public VolumeInspect(IVolumeID volume)
+    {
+        this.VolumeName = volume.VolumeID;
+    }
+
     /// <summary>
     /// Return arguments for wslc.exe
     /// </summary>
