@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using System.Linq;
-using System.Text;
-
-namespace SilentOrbit.WSLC;
+﻿namespace SilentOrbit.WSLC;
 
 /// <summary>
 /// Sample usage

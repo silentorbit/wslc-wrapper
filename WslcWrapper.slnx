@@ -10,6 +10,7 @@
     <File Path="README.md" />
   </Folder>
   <Project Path="WslcGenerator/WslcGenerator.csproj" />
+  <Project Path="WslcSample/WslcSample.csproj" Id="4a295ea8-4cba-4767-aee1-7c0fcdf9a88f" />
   <Project Path="WslcTest/WslcTest.csproj" />
   <Project Path="WslcWrapper/WslcWrapper.csproj" />
 </Solution>

@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace SilentOrbit.WSLC;
+﻿namespace SilentOrbit.WSLC;
 
 public class WslcResult
 {

@@ -1,10 +1,8 @@
-﻿using SilentOrbit.WSLC.Commands;
+﻿namespace SilentOrbit.WSLC;
 
-namespace SilentOrbit.WSLC;
-
-internal class ReadMe
+internal class ProgramReadMe
 {
-    public static void Demo()
+    static void Main(string[] args)
     {
         //Get list of images
         List<ImageListItem> list = new ImageList().RunJson();
