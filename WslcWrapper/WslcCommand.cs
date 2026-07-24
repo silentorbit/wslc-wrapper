@@ -18,6 +18,9 @@ public abstract class WslcCommand
 
     public List<string> BuildArgs()
     {
+        if (this is IFormatJson format)
+            format.Format ??= "json";
+
         var args = new List<string>();
         if (Session != null)
             args.AddRange("--session", Session);

@@ -12,11 +12,7 @@ public static class WslcExe
     public static TReturn RunJson<TReturn>(this WslcCommandJson<TReturn> command)
         where TReturn : class
     {
-        if (command is IFormatJson format)
-            format.Format = "json";
-
         var json = RunString(command);
-
         return JsonSerializer.Deserialize<TReturn>(json)
             ?? throw new ArgumentNullException();
     }
