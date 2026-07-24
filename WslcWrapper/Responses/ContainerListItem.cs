@@ -1,4 +1,4 @@
-﻿namespace SilentOrbit.WSLC.Data;
+﻿namespace SilentOrbit.WSLC.Responses;
 
 /// <summary>
 /// Direct map of:

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace SilentOrbit.WSLC.Data;
+namespace SilentOrbit.WSLC.Responses;
 
 public abstract class UnmappedJsonBase
 {
@@ -8,14 +8,13 @@ public abstract class UnmappedJsonBase
     public Dictionary<string, JsonElement>? UnmappedData
     {
         get => field;
-        set => field = value;
-        /*
+        set
         {
 #if DEBUG
             var type = GetType().Name;
 #endif
             Debug.Fail("UnmappedData");
             field = value;
-        }*/
+        }
     }
 }

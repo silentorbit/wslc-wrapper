@@ -1,4 +1,4 @@
-﻿namespace SilentOrbit.WSLC;
+﻿namespace SilentOrbit.WSLC.Commands;
 
 /// <summary>
 /// All commands where the --format json must be added to get a JSON response

@@ -1,4 +1,4 @@
-﻿namespace SilentOrbit.WSLC.Data;
+﻿namespace SilentOrbit.WSLC.Arguments;
 
 public class VolumeArg : IListArg
 {

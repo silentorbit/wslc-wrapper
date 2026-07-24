@@ -1,4 +1,4 @@
-﻿namespace SilentOrbit.WSLC.Data;
+﻿namespace SilentOrbit.WSLC.Responses;
 
 /// <summary>
 /// <see cref="ImageInspect"/>.<see cref="WslcCommandJson{T}.RunJson"/>

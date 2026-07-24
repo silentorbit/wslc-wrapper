@@ -5,6 +5,8 @@ global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using System.Diagnostics.CodeAnalysis;
 
+global using SilentOrbit.WSLC.Arguments;
 global using SilentOrbit.WSLC.Commands;
+global using SilentOrbit.WSLC.Responses;
 global using SilentOrbit.WSLC.Data;
 global using SilentOrbit.WSLC.Extensions;

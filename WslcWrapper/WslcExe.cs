@@ -4,6 +4,9 @@ using System.Text;
 
 namespace SilentOrbit.WSLC;
 
+/// <summary>
+/// Sample usage
+/// </summary>
 public static class WslcExe
 {
     /// <summary>
@@ -13,8 +16,14 @@ public static class WslcExe
         where TReturn : class
     {
         var json = RunString(command);
-        return JsonSerializer.Deserialize<TReturn>(json)
+
+        var resp = JsonSerializer.Deserialize<TReturn>(json)
             ?? throw new ArgumentNullException();
+
+        if (resp is UnmappedJsonBase unmapped)
+            Debug.Assert(unmapped.UnmappedData == null, "Unmapped data found in JSON response");
+
+        return resp;
     }
 
     /// <summary>

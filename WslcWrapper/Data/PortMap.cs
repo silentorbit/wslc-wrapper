@@ -24,33 +24,6 @@ public class PortMap : IListArg
         this.ContainerPort = containerPort;
     }
 
-    public static implicit operator PortMap(string arg)
-    {
-        var parts = arg.Split(':');
-        switch (parts.Length)
-        {
-            case 2:
-                return new PortMap
-                {
-                    HostPort = ushort.Parse(parts[0]),
-                    ContainerPort = ushort.Parse(parts[1])
-                };
-
-            case 3:
-                return new PortMap
-                {
-                    BindingAddress = parts[0],
-                    HostPort = ushort.Parse(parts[1]),
-                    ContainerPort = ushort.Parse(parts[2])
-                };
-
-            default:
-                throw new NotImplementedException(arg);
-        }
-    }
-
-    public static implicit operator string(PortMap map) => map.BuildArg();
-
     public string BuildArg()
     {
         Debug.Assert(Protocol == Protocol.TCP);

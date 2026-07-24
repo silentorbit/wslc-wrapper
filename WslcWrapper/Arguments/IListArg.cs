@@ -1,4 +1,4 @@
-﻿namespace SilentOrbit.WSLC.Data;
+﻿namespace SilentOrbit.WSLC.Arguments;
 
 /// <summary>
 /// For use in <see cref="ListExtension.AddOptional(List{string}, string, IEnumerable{IListArg}?)"/>

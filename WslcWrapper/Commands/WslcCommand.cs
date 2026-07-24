@@ -1,4 +1,4 @@
-﻿namespace SilentOrbit.WSLC;
+﻿namespace SilentOrbit.WSLC.Commands;
 
 /// <summary>
 /// Base class for all requests to wslc.exe

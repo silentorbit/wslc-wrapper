@@ -1,4 +1,4 @@
-﻿namespace SilentOrbit.WSLC;
+﻿namespace SilentOrbit.WSLC.Commands;
 
 public class RawArguments : WslcCommand
 {
