@@ -61,7 +61,7 @@ public static class WslcExe
     public static WslcResult Run(IList<string> args)
     {
         if (args.Any(string.IsNullOrWhiteSpace))
-            throw new ArgumentNullException("Arguments can't be null or whitespace");
+            throw new ArgumentNullException(nameof(args), "Arguments can't be null or whitespace");
 
         var psi = new ProcessStartInfo
         {
@@ -70,7 +70,7 @@ public static class WslcExe
             CreateNoWindow = true,
             UseShellExecute = false,
             RedirectStandardOutput = true,
-            RedirectStandardError = true
+            RedirectStandardError = true,
         };
         foreach (var arg in args)
             psi.ArgumentList.Add(arg);
@@ -81,20 +81,18 @@ public static class WslcExe
         var stdErrBuilder = new StringBuilder();
         process.OutputDataReceived += (sender, e) =>
         {
-            if (e.Data != null) // e.Data is null when the stream is closed
-            {
-                Console.WriteLine(e.Data);    // Read/print in real-time
-                stdOutBuilder.AppendLine(e.Data); // Store for the final result
-            }
+            if (e.Data == null)
+                return;
+
+            stdOutBuilder.AppendLine(e.Data);
         };
 
         process.ErrorDataReceived += (sender, e) =>
         {
-            if (e.Data != null)
-            {
-                Console.Error.WriteLine(e.Data);
-                stdErrBuilder.AppendLine(e.Data);
-            }
+            if (e.Data == null)
+                return;
+
+            stdErrBuilder.AppendLine(e.Data);
         };
 
         process.Start();
