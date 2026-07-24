@@ -1,0 +1,52 @@
+﻿namespace SilentOrbit.WSLC.Commands;
+
+/// <summary><![CDATA[
+/// Attaches to a container.
+/// Usage: wslc container attach [<options>] <container-id>
+/// ]]></summary>
+[GeneratedCode("WslcGenerator", "0.0.0.1")]
+public partial class ContainerAttach : WslcCommand
+{
+    /// <summary>
+    /// Container ID
+    /// </summary>
+    public required string ContainerID { get; set; }
+
+    /// <summary><![CDATA[
+    /// Attaches to a container.
+    /// Usage: wslc container attach [<options>] <container-id>
+    /// ]]></summary>
+    public ContainerAttach() { }
+
+    /// <summary><![CDATA[
+    /// Attaches to a container.
+    /// Usage: wslc container attach [<options>] <container-id>
+    /// ]]></summary>
+    /// <param name="container_id">Container ID</param>
+    [SetsRequiredMembers]
+    public ContainerAttach(string container_id)
+    {
+        this.ContainerID = container_id;
+    }
+
+    /// <summary><![CDATA[
+    /// Attaches to a container.
+    /// Usage: wslc container attach [<options>] <container-id>
+    /// ]]></summary>
+    /// <param name="container">Container ID</param>
+    [SetsRequiredMembers]
+    public ContainerAttach(IContainerID container)
+    {
+        this.ContainerID = container.ContainerID;
+    }
+
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
+    protected override void BuildArgs(List<string> args)
+    {
+        args.AddRange("container", "attach");
+        args.Add(ContainerID);
+    }
+
+}

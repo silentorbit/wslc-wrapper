@@ -1,0 +1,32 @@
+﻿namespace SilentOrbit.WSLC.Commands;
+
+/// <summary><![CDATA[
+/// Removes all unused networks. A network is considered unused when it is not referenced by any container.
+/// Usage: wslc network prune [<options>]
+/// ]]></summary>
+[GeneratedCode("WslcGenerator", "0.0.0.1")]
+public partial class NetworkPrune : WslcCommand
+{
+    /// <summary><![CDATA[
+    /// Removes all unused networks. A network is considered unused when it is not referenced by any container.
+    /// Usage: wslc network prune [<options>]
+    /// ]]></summary>
+    public NetworkPrune() { }
+
+    /// <summary><![CDATA[
+    /// Filter output based on conditions provided
+    /// --filter
+    /// ]]></summary>
+    public IList<string> Filter { get; set; } = [];
+
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
+    protected override void BuildArgs(List<string> args)
+    {
+        args.AddRange("network", "prune");
+        foreach (var v in Filter)
+            args.AddRange("--filter", v);
+    }
+
+}

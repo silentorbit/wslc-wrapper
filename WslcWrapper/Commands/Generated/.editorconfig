@@ -1,0 +1,6 @@
+﻿[*.cs]
+# Disable namespace folder-matching analyzer for this directory
+dotnet_diagnostic.IDE0130.severity = none
+
+# Tell Roslyn/Analyzers that this entire directory contains generated code
+generated_code = true

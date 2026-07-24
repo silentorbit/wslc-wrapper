@@ -1,0 +1,52 @@
+﻿namespace SilentOrbit.WSLC.Commands;
+
+/// <summary><![CDATA[
+/// Display detailed information about a container.
+/// Usage: wslc container inspect [<options>] <container-id>
+/// ]]></summary>
+[GeneratedCode("WslcGenerator", "0.0.0.1")]
+public partial class ContainerInspect : WslcCommandJson<List<ContainerInspectItem>>
+{
+    /// <summary>
+    /// Container ID
+    /// </summary>
+    public required string ContainerID { get; set; }
+
+    /// <summary><![CDATA[
+    /// Display detailed information about a container.
+    /// Usage: wslc container inspect [<options>] <container-id>
+    /// ]]></summary>
+    public ContainerInspect() { }
+
+    /// <summary><![CDATA[
+    /// Display detailed information about a container.
+    /// Usage: wslc container inspect [<options>] <container-id>
+    /// ]]></summary>
+    /// <param name="container_id">Container ID</param>
+    [SetsRequiredMembers]
+    public ContainerInspect(string container_id)
+    {
+        this.ContainerID = container_id;
+    }
+
+    /// <summary><![CDATA[
+    /// Display detailed information about a container.
+    /// Usage: wslc container inspect [<options>] <container-id>
+    /// ]]></summary>
+    /// <param name="container">Container ID</param>
+    [SetsRequiredMembers]
+    public ContainerInspect(IContainerID container)
+    {
+        this.ContainerID = container.ContainerID;
+    }
+
+    /// <summary>
+    /// Return arguments for wslc.exe
+    /// </summary>
+    protected override void BuildArgs(List<string> args)
+    {
+        args.AddRange("container", "inspect");
+        args.Add(ContainerID);
+    }
+
+}

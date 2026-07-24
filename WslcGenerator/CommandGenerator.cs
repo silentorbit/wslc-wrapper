@@ -51,7 +51,7 @@ class CommandGenerator
             gen = JsonSerializer.Deserialize<CommandGenerator>(json) ?? new();
         }
         gen.generatorFile = file;
-        gen.targetDir = sourceFile.Parent.Parent.CombineDir("WslcWrapper", "Commands");
+        gen.targetDir = sourceFile.Parent.Parent.CombineDir("WslcWrapper", "Commands", "Generated");
         return gen;
     }
 
@@ -73,7 +73,7 @@ class CommandGenerator
     {
         var code = GenerateCode(cmd);
 
-        var target = targetDir.CombineFile($"{cmd.ClassName}.cs");
+        var target = targetDir.CombineFile($"{cmd.ClassName}.generated.cs");
         File.WriteAllText(target.Path, code, new UTF8Encoding(encoderShouldEmitUTF8Identifier: true)); //With BOM
 
         return target;
@@ -91,6 +91,7 @@ class CommandGenerator
         code.AppendLine("namespace SilentOrbit.WSLC.Commands;");
         code.AppendLine();
         code.AppendSummary(cmd.Summary);
+        code.AppendLine(@"[GeneratedCode(""WslcGenerator"", ""0.0.0.1"")]");
         code.AppendLine($"public partial class {cmd.ClassName} : {baseType}{formatInterface}");
         code.AppendLine("{");
 
