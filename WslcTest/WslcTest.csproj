@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WslcSample\WslcSample.csproj" />
     <ProjectReference Include="..\WslcWrapper\WslcWrapper.csproj" />
   </ItemGroup>
 

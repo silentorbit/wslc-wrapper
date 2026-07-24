@@ -24,7 +24,7 @@ namespace SilentOrbit.WSLC.Docker
 {
     using System = global::System;
 
-    
+
 
     /// <summary>
     /// individual image layer information in response to ImageHistory operation
@@ -1276,7 +1276,7 @@ namespace SilentOrbit.WSLC.Docker
         /// <br/>
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("ExposedPorts")]
-        public System.Collections.Generic.IDictionary<string, Anonymous3> ExposedPorts { get; set; }
+        public System.Collections.Generic.IDictionary<string, ExposedPort> ExposedPorts { get; set; }
 
         /// <summary>
         /// Attach standard streams to a TTY, including `stdin` if it is not closed.
@@ -1336,7 +1336,7 @@ namespace SilentOrbit.WSLC.Docker
         /// <br/>
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("Volumes")]
-        public System.Collections.Generic.IDictionary<string, Anonymous4> Volumes { get; set; }
+        public System.Collections.Generic.IDictionary<string, ContainerVolume> Volumes { get; set; }
 
         /// <summary>
         /// The working directory for commands to run in.
@@ -1418,7 +1418,7 @@ namespace SilentOrbit.WSLC.Docker
         /// <br/>
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("ExposedPorts")]
-        public System.Collections.Generic.IDictionary<string, Anonymous5> ExposedPorts { get; set; }
+        public System.Collections.Generic.IDictionary<string, ExposedPort> ExposedPorts { get; set; }
 
         /// <summary>
         /// A list of environment variables to set inside the container in the
@@ -1451,7 +1451,7 @@ namespace SilentOrbit.WSLC.Docker
         /// <br/>
         /// </summary>
         [System.Text.Json.Serialization.JsonPropertyName("Volumes")]
-        public System.Collections.Generic.IDictionary<string, Anonymous6> Volumes { get; set; }
+        public System.Collections.Generic.IDictionary<string, object> Volumes { get; set; }
 
         /// <summary>
         /// The working directory for commands to run in.
@@ -8196,42 +8196,6 @@ namespace SilentOrbit.WSLC.Docker
 
         [System.Runtime.Serialization.EnumMember(Value = @"")]
         Empty = 3,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Anonymous3
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"{}")]
-        __ = 0,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Anonymous4
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"{}")]
-        __ = 0,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Anonymous5
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"{}")]
-        __ = 0,
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.7.1.0 (NJsonSchema v11.6.1.0 (Newtonsoft.Json v13.0.0.0))")]
-    public enum Anonymous6
-    {
-
-        [System.Runtime.Serialization.EnumMember(Value = @"{}")]
-        __ = 0,
 
     }
 
