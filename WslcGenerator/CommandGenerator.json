@@ -16,7 +16,7 @@
     "--driver": "string",
     "--entrypoint": "string",
     "--env": "Dictionary<string, string>",
-    "--env-file": "string",
+    "--env-file": "IList<string>",
     "file": "string",
     "--file": "string",
     "--filter": "IList<string>",

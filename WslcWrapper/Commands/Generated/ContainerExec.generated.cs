@@ -74,7 +74,7 @@ public partial class ContainerExec : WslcCommand
     /// File containing key=value pairs of env variables
     /// --env-file
     /// ]]></summary>
-    public string? EnvFile { get; set; }
+    public IList<string> EnvFile { get; set; } = [];
 
     /// <summary><![CDATA[
     /// Attach to stdin and keep it open
@@ -108,7 +108,8 @@ public partial class ContainerExec : WslcCommand
         args.AddRange("container", "exec");
         args.AddFlag("--detach", Detach);
         args.AddOptional("--env", Env);
-        args.AddOptional("--env-file", EnvFile);
+        foreach (var v in EnvFile)
+            args.AddRange("--env-file", v);
         args.AddFlag("--interactive", Interactive);
         args.AddFlag("--tty", TTY);
         args.AddOptional("--user", User);

@@ -116,7 +116,7 @@ public partial class ContainerRun : WslcCommand
     /// File containing key=value pairs of env variables
     /// --env-file
     /// ]]></summary>
-    public string? EnvFile { get; set; }
+    public IList<string> EnvFile { get; set; } = [];
 
     /// <summary><![CDATA[
     /// Add GPU devices to the container ('all' to pass all GPUs)
@@ -289,7 +289,8 @@ public partial class ContainerRun : WslcCommand
         args.AddOptional("--domainname", Domainname);
         args.AddOptional("--entrypoint", Entrypoint);
         args.AddOptional("--env", Env);
-        args.AddOptional("--env-file", EnvFile);
+        foreach (var v in EnvFile)
+            args.AddRange("--env-file", v);
         args.AddOptional("--gpus", GPUs);
         args.AddOptional("--health-cmd", HealthCmd);
         args.AddOptional("--health-interval", HealthInterval);
