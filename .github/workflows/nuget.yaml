@@ -1,13 +1,17 @@
 name: Publish NuGet Package
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - 'v*.*.*' # Triggers on tags like v1.0.0, v2.1.4, etc.
+  #release:
+  #  types: [created]
+  #  types: [published]
   workflow_dispatch:
 
 permissions:
   id-token: write
-  contents: write # Release edit
+  contents: write # Release create/edit
   packages: none
   issues: none
   pull-requests: none
@@ -35,13 +39,14 @@ jobs:
       run: dotnet test --configuration Release --no-build
 
     - name: Parse version from tag
+      id: parse_version
       run: |
         VERSION=${GITHUB_REF_NAME#v}
         echo "VERSION=$VERSION"
-        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
 
     - name: Pack NuGet Package
-      run: dotnet pack -p:Version=$VERSION --configuration Release --no-build --output dist WslcWrapper/WslcWrapper.csproj
+      run: dotnet pack -p:Version=${{ steps.parse_version.outputs.version }} --configuration Release --no-build --output dist WslcWrapper/WslcWrapper.csproj
       
     - name: NuGet Trusted Publishing Login
       uses: NuGet/login@v1
@@ -55,11 +60,13 @@ jobs:
           --source https://api.nuget.org/v3/index.json \
           --api-key ${{ steps.nuget_login.outputs.NUGET_API_KEY }} \
           --skip-duplicate
-    - name: Update GitHub Release with NuGet URL
+    - name: Create GitHub Release with NuGet URL
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh release view ${{ github.ref_name }} --json body --template '{{.body}}' > existing_notes.txt
-        echo -e "\n\n### NuGet Packages\n📦 [SilentOrbit.WSLC](https://www.nuget.org/packages/SilentOrbit.WSLC/$VERSION)" >> existing_notes.txt
-        gh release edit ${{ github.ref_name }} \
-          --notes-file existing_notes.txt
+        echo -e "### NuGet Packages\n📦 [SilentOrbit.WSLC](https://www.nuget.org/packages/SilentOrbit.WSLC/${{ steps.parse_version.outputs.version }})" > notes.txt
+
+        gh release create ${{ github.ref_name }} \
+          --title "${{ github.ref_name }}" \
+          --generate-notes \
+          --notes-file notes.txt
