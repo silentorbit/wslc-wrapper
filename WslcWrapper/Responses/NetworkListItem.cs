@@ -1,7 +1,7 @@
 ﻿namespace SilentOrbit.WSLC.Responses;
 
 /// <summary>
-/// <see cref="NetworkList"/>.<see cref="WslcCommandJson{T}.RunJson"/>
+/// <see cref="NetworkList"/>
 /// </summary>
 public class NetworkListItem : UnmappedJsonBase
 {

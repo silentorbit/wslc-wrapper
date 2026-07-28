@@ -1,7 +1,7 @@
 ﻿namespace SilentOrbit.WSLC.Responses;
 
 /// <summary>
-/// <see cref="ImageInspect"/>.<see cref="WslcCommandJson{T}.RunJson"/>
+/// <see cref="ImageInspect"/>
 /// </summary>
 public class ImageInspectItem : Docker.ImageInspect
 {
