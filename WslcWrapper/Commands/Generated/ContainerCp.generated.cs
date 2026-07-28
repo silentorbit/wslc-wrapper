@@ -1,4 +1,5 @@
-﻿namespace SilentOrbit.WSLC.Commands;
+﻿#nullable enable
+namespace SilentOrbit.WSLC.Commands;
 
 /// <summary><![CDATA[
 /// Copy files between a container and the local filesystem.

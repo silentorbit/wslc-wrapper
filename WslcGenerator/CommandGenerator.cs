@@ -85,13 +85,14 @@ class CommandGenerator
 
         var code = new CodeGenerator();
 
-        var baseType = GetBaseType(cmd);
-        var formatInterface = (cmd.Options.Any(o => o.Key == "--format")) ? ", IFormatJson" : null;
-
+        code.AppendLine("#nullable enable");
         code.AppendLine("namespace SilentOrbit.WSLC.Commands;");
         code.AppendLine();
         code.AppendSummary(cmd.Summary);
         code.AppendLine(@"[GeneratedCode(""WslcGenerator"", ""0.0.0.1"")]");
+        
+        var baseType = GetBaseType(cmd);
+        var formatInterface = (cmd.Options.Any(o => o.Key == "--format")) ? ", IFormatJson" : null;
         code.AppendLine($"public partial class {cmd.ClassName} : {baseType}{formatInterface}");
         code.AppendLine("{");
 

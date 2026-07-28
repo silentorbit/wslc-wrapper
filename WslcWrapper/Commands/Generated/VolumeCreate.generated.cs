@@ -1,4 +1,5 @@
-﻿namespace SilentOrbit.WSLC.Commands;
+﻿#nullable enable
+namespace SilentOrbit.WSLC.Commands;
 
 /// <summary><![CDATA[
 /// Creates a named volume that can be attached to containers.

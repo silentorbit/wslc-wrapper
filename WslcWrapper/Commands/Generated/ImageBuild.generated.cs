@@ -1,4 +1,5 @@
-﻿namespace SilentOrbit.WSLC.Commands;
+﻿#nullable enable
+namespace SilentOrbit.WSLC.Commands;
 
 /// <summary><![CDATA[
 /// Builds an image from a Dockerfile and a build context directory.

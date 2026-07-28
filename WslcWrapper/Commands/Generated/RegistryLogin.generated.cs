@@ -1,4 +1,5 @@
-﻿namespace SilentOrbit.WSLC.Commands;
+﻿#nullable enable
+namespace SilentOrbit.WSLC.Commands;
 
 /// <summary><![CDATA[
 /// Log in to a registry. If no server is specified, the default is defined by the session.

@@ -1,4 +1,5 @@
-﻿namespace SilentOrbit.WSLC.Commands;
+﻿#nullable enable
+namespace SilentOrbit.WSLC.Commands;
 
 /// <summary><![CDATA[
 /// Runs a command in an active session without a TTY. The command and its arguments are forwarded directly to the session. If no session is specified, the wslc default session will be used.
