@@ -40,7 +40,7 @@ public partial class ImageBuild : WslcCommand
     /// Always attempt to pull a newer version of the image
     /// --pull
     /// ]]></summary>
-    public string? Pull { get; set; }
+    public bool Pull { get; set; }
 
     /// <summary><![CDATA[
     /// Set the target build stage to build
@@ -76,7 +76,7 @@ public partial class ImageBuild : WslcCommand
     /// Output verbose details
     /// --verbose
     /// ]]></summary>
-    public string? Verbose { get; set; }
+    public bool Verbose { get; set; }
 
     /// <summary>
     /// Return arguments for wslc.exe
@@ -85,13 +85,13 @@ public partial class ImageBuild : WslcCommand
     {
         args.AddRange("image", "build");
         args.AddOptional("--build-arg", BuildArg);
-        args.AddOptional("--pull", Pull);
+        args.AddFlag("--pull", Pull);
         args.AddOptional("--target", Target);
         args.AddOptional("--file", File);
         args.AddOptional("--label", Label);
         args.AddFlag("--no-cache", NoCache);
         args.AddOptional("--tag", Tag);
-        args.AddOptional("--verbose", Verbose);
+        args.AddFlag("--verbose", Verbose);
         args.Add(Path);
     }
 

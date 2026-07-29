@@ -18,7 +18,7 @@ public partial class SystemSessionList : WslcCommand
     /// Show detailed information about the listed sessions.
     /// --verbose
     /// ]]></summary>
-    public string? Verbose { get; set; }
+    public bool Verbose { get; set; }
 
     /// <summary>
     /// Return arguments for wslc.exe
@@ -26,7 +26,7 @@ public partial class SystemSessionList : WslcCommand
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange("system", "session", "list");
-        args.AddOptional("--verbose", Verbose);
+        args.AddFlag("--verbose", Verbose);
     }
 
 }

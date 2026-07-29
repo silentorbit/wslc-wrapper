@@ -36,13 +36,13 @@ public partial class ContainerList : WslcCommandJson<List<ContainerListItem>>, I
     /// Show n last created containers (includes all states)
     /// --last
     /// ]]></summary>
-    public string? Last { get; set; }
+    public int? Last { get; set; }
 
     /// <summary><![CDATA[
     /// Show the latest created container (includes all states)
     /// --latest
     /// ]]></summary>
-    public string? Latest { get; set; }
+    public bool Latest { get; set; }
 
     /// <summary><![CDATA[
     /// Do not truncate output
@@ -67,7 +67,7 @@ public partial class ContainerList : WslcCommandJson<List<ContainerListItem>>, I
             args.AddRange("--filter", v);
         args.AddOptional("--format", Format);
         args.AddOptional("--last", Last);
-        args.AddOptional("--latest", Latest);
+        args.AddFlag("--latest", Latest);
         args.AddFlag("--no-trunc", NoTrunc);
         args.AddFlag("--quiet", Quiet);
     }

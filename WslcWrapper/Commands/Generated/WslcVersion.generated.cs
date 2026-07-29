@@ -18,7 +18,7 @@ public partial class WslcVersion : WslcCommand
     /// Show version information for this tool
     /// --version
     /// ]]></summary>
-    public string? Version { get; set; }
+    public bool Version { get; set; }
 
     /// <summary>
     /// Return arguments for wslc.exe
@@ -26,7 +26,7 @@ public partial class WslcVersion : WslcCommand
     protected override void BuildArgs(List<string> args)
     {
         args.AddRange();
-        args.AddOptional("--version", Version);
+        args.AddFlag("--version", Version);
     }
 
 }

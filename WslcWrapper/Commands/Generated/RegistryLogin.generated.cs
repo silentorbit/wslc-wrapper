@@ -40,7 +40,7 @@ public partial class RegistryLogin : WslcCommand
     /// Take the Password or Personal Access Token (PAT) from stdin
     /// --password-stdin
     /// ]]></summary>
-    public string? PasswordStdin { get; set; }
+    public bool PasswordStdin { get; set; }
 
     /// <summary><![CDATA[
     /// Username
@@ -55,7 +55,7 @@ public partial class RegistryLogin : WslcCommand
     {
         args.AddRange("registry", "login");
         args.AddOptional("--password", Password);
-        args.AddOptional("--password-stdin", PasswordStdin);
+        args.AddFlag("--password-stdin", PasswordStdin);
         args.AddOptional("--username", Username);
         args.AddOptional(Server);
     }

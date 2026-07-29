@@ -42,7 +42,7 @@ public partial class ImageList : WslcCommandJson<List<ImageListItem>>, IFormatJs
     /// Output verbose details
     /// --verbose
     /// ]]></summary>
-    public string? Verbose { get; set; }
+    public bool Verbose { get; set; }
 
     /// <summary>
     /// Return arguments for wslc.exe
@@ -55,7 +55,7 @@ public partial class ImageList : WslcCommandJson<List<ImageListItem>>, IFormatJs
         args.AddOptional("--format", Format);
         args.AddFlag("--no-trunc", NoTrunc);
         args.AddFlag("--quiet", Quiet);
-        args.AddOptional("--verbose", Verbose);
+        args.AddFlag("--verbose", Verbose);
     }
 
 }
