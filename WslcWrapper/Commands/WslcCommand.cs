@@ -33,6 +33,8 @@ public abstract class WslcCommand
     }
 
     protected abstract void BuildArgs(List<string> args);
+
+    public override string ToString() => string.Join(" ", BuildArgs());
 }
 
 /// <summary>
@@ -41,7 +43,7 @@ public abstract class WslcCommand
 public abstract class WslcCommandJson<TReturn> : WslcCommand
     where TReturn : class
 {
-    
+
 }
 
 /// <summary>
