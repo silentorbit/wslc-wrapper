@@ -38,6 +38,7 @@ public partial class ContainerExport : WslcCommand
     [SetsRequiredMembers]
     public ContainerExport(IContainerID container)
     {
+        this.Session = container.Session;
         this.ContainerID = container.ContainerID;
     }
 

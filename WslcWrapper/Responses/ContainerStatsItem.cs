@@ -15,6 +15,9 @@ public class ContainerStatsItem : UnmappedJsonBase, IContainerID
     public required int PIDs { get; set; } // 0
 
     [JsonIgnore]
+    string? ISessionID.Session { get; set; }
+
+    [JsonIgnore]
     string IContainerID.ContainerID => Name ?? ID;
 
     public override string ToString() => Name ?? ID;

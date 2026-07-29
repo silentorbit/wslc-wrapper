@@ -38,6 +38,7 @@ public partial class ContainerStats : WslcCommandJson<List<ContainerStatsItem>>,
     [SetsRequiredMembers]
     public ContainerStats(IContainerID container)
     {
+        this.Session = container.Session;
         this.ContainerID = container.ContainerID;
     }
 

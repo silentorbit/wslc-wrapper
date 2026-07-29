@@ -38,6 +38,7 @@ public partial class ContainerRemove : WslcCommandString<IContainerID>
     [SetsRequiredMembers]
     public ContainerRemove(IContainerID container)
     {
+        this.Session = container.Session;
         this.ContainerID = container.ContainerID;
     }
 

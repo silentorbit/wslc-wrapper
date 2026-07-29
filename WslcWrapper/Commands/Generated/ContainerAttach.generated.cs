@@ -38,6 +38,7 @@ public partial class ContainerAttach : WslcCommand
     [SetsRequiredMembers]
     public ContainerAttach(IContainerID container)
     {
+        this.Session = container.Session;
         this.ContainerID = container.ContainerID;
     }
 

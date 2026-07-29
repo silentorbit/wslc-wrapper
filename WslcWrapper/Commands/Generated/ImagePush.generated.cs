@@ -38,6 +38,7 @@ public partial class ImagePush : WslcCommand
     [SetsRequiredMembers]
     public ImagePush(IImageID image)
     {
+        this.Session = image.Session;
         this.Image = image.ImageID;
     }
 

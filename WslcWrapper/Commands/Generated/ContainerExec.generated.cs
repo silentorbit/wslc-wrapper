@@ -54,6 +54,7 @@ public partial class ContainerExec : WslcCommand
     [SetsRequiredMembers]
     public ContainerExec(IContainerID container, string command, params IList<string>? arguments)
     {
+        this.Session = container.Session;
         this.ContainerID = container.ContainerID;
         this.Command = command;
         this.Arguments = arguments;

@@ -38,6 +38,7 @@ public partial class ContainerStop : WslcCommandString<IContainerID>
     [SetsRequiredMembers]
     public ContainerStop(IContainerID container)
     {
+        this.Session = container.Session;
         this.ContainerID = container.ContainerID;
     }
 

@@ -228,7 +228,18 @@ class CommandGenerator
         code.AppendLine($"public {cmd.ClassName}({string.Join(", ", CtorArgumentEnum(arguments))})");
         code.AppendLine("{");
         foreach (var a in arguments)
+        {
+            switch (a.CtorParameterType)
+            {
+                case "IContainerID":
+                case "IVolumeID":
+                case "IImageID":
+                case "INetworkID":
+                    code.AppendLine($"this.Session = {a.CtorParameterName}.Session;");
+                    break;
+            }
             code.AppendLine($"this.{a.PropertyName} = {a.CtorPropertyValue};");
+        }
         code.AppendLine("}");
         code.AppendLine();
     }

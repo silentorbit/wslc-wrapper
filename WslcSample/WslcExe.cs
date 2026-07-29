@@ -19,6 +19,16 @@ public static class WslcExe
         if (resp is UnmappedJsonBase unmapped)
             Debug.Assert(unmapped.UnmappedData == null, "Unmapped data found in JSON response");
 
+        if (resp is ISessionID itemWithSession)
+        {
+            itemWithSession.Session = command.Session;
+        }
+        if (resp is IEnumerable<ISessionID> listWithSession)
+        {
+            foreach (var item in listWithSession)
+                item.Session = command.Session;
+        }
+
         return resp;
     }
 
@@ -28,7 +38,7 @@ public static class WslcExe
     public static IContainerID RunID(this WslcCommandString<IContainerID> command)
     {
         var id = RunString(command);
-        return new OnlyContainerID(id);
+        return new ResponseContainerID(id) { Session = command.Session };
     }
 
     /// <summary>
@@ -37,7 +47,7 @@ public static class WslcExe
     public static IVolumeID RunID(this WslcCommandString<IVolumeID> command)
     {
         var id = RunString(command);
-        return new OnlyVolumeID(id);
+        return new ResponseVolumeID(id) { Session = command.Session };
     }
 
     /// <summary>

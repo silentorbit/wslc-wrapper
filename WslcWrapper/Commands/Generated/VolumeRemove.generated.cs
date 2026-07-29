@@ -38,6 +38,7 @@ public partial class VolumeRemove : WslcCommandString<IVolumeID>
     [SetsRequiredMembers]
     public VolumeRemove(IVolumeID volume)
     {
+        this.Session = volume.Session;
         this.VolumeName = volume.VolumeID;
     }
 

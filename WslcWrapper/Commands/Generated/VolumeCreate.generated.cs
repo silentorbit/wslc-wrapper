@@ -38,6 +38,7 @@ public partial class VolumeCreate : WslcCommandString<IVolumeID>
     [SetsRequiredMembers]
     public VolumeCreate(IVolumeID volume)
     {
+        this.Session = volume.Session;
         this.VolumeName = volume.VolumeID;
     }
 

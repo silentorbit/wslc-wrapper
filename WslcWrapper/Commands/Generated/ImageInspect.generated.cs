@@ -38,6 +38,7 @@ public partial class ImageInspect : WslcCommandJson<List<ImageInspectItem>>
     [SetsRequiredMembers]
     public ImageInspect(IImageID image)
     {
+        this.Session = image.Session;
         this.Image = image.ImageID;
     }
 

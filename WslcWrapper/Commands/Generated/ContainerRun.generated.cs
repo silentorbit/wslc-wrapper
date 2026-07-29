@@ -54,6 +54,7 @@ public partial class ContainerRun : WslcCommand
     [SetsRequiredMembers]
     public ContainerRun(IImageID image, string? command = null, params IList<string>? arguments)
     {
+        this.Session = image.Session;
         this.Image = image.ImageID;
         this.Command = command;
         this.Arguments = arguments;

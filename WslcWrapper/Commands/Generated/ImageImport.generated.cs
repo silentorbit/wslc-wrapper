@@ -47,6 +47,7 @@ public partial class ImageImport : WslcCommand
     public ImageImport(string file, IImageID image)
     {
         this.File = file;
+        this.Session = image.Session;
         this.Image = image.ImageID;
     }
 

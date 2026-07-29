@@ -1,6 +1,6 @@
 ﻿namespace SilentOrbit.WSLC.Data;
 
-public interface IImageID
+public interface IImageID : ISessionID
 {
     string ImageID { get; }
 }

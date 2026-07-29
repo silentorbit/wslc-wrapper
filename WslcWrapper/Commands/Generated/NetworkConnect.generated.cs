@@ -47,6 +47,7 @@ public partial class NetworkConnect : WslcCommand
     public NetworkConnect(string network_name, IContainerID container)
     {
         this.NetworkName = network_name;
+        this.Session = container.Session;
         this.ContainerID = container.ContainerID;
     }
 

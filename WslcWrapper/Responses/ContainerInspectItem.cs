@@ -8,6 +8,9 @@
 public class ContainerInspectItem : Docker.ContainerInspectResponse, IContainerID
 {
     [JsonIgnore]
+    string? ISessionID.Session { get; set; }
+
+    [JsonIgnore]
     string IContainerID.ContainerID => Name ?? Id;
 
     public required Docker.PortMap Ports { get => NetworkSettings.Ports; set => NetworkSettings.Ports = value; }

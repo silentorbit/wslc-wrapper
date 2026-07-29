@@ -38,6 +38,7 @@ public partial class ImageRemove : WslcCommand
     [SetsRequiredMembers]
     public ImageRemove(IImageID image)
     {
+        this.Session = image.Session;
         this.Image = image.ImageID;
     }
 

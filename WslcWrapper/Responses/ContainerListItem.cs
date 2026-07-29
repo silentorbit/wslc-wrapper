@@ -8,6 +8,9 @@
 /// </summary>
 public class ContainerListItem : UnmappedJsonBase, IContainerID
 {
+    [JsonIgnore]
+    string? ISessionID.Session { get; set; }
+
     public UInt64 CreatedAt { get; set; }
     public required string Id { get; set; }
     public required string Image { get; set; }

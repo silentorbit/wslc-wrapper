@@ -11,6 +11,9 @@ public class ImageListItem : UnmappedJsonBase, IImageID
     public required string Tag { get; set; }
 
     [JsonIgnore]
+    string? ISessionID.Session { get; set; }
+
+    [JsonIgnore]
     public string ImageID
     {
         get
