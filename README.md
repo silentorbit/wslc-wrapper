@@ -3,7 +3,7 @@
 
 A wrapper for the wslc.exe command.
 
-Offers a stronly typed interface to generate commands to manage containers on Windows.
+Offers a strongly typed interface to generate commands to manage containers on Windows.
 
 # Usage
 
