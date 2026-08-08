@@ -11,6 +11,7 @@ public static class WslcExe
     public static TReturn RunJson<TReturn>(this WslcCommandJson<TReturn> command)
         where TReturn : class
     {
+        Debug.Assert(command.SessionID != null);
         var json = RunString(command);
 
         var resp = JsonSerializer.Deserialize<TReturn>(json)
@@ -21,12 +22,12 @@ public static class WslcExe
 
         if (resp is ISessionID itemWithSession)
         {
-            itemWithSession.Session = command.Session;
+            itemWithSession.SessionID = command.SessionID;
         }
         if (resp is IEnumerable<ISessionID> listWithSession)
         {
             foreach (var item in listWithSession)
-                item.Session = command.Session;
+                item.SessionID = command.SessionID;
         }
 
         return resp;
@@ -38,7 +39,7 @@ public static class WslcExe
     public static IContainerID RunID(this WslcCommandString<IContainerID> command)
     {
         var id = RunString(command);
-        return new ResponseContainerID(id) { Session = command.Session };
+        return new ResponseContainerID(id) { SessionID = command.SessionID! };
     }
 
     /// <summary>
@@ -47,7 +48,7 @@ public static class WslcExe
     public static IVolumeID RunID(this WslcCommandString<IVolumeID> command)
     {
         var id = RunString(command);
-        return new ResponseVolumeID(id) { Session = command.Session };
+        return new ResponseVolumeID(id) { SessionID = command.SessionID! };
     }
 
     /// <summary>

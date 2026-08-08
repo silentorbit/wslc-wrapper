@@ -38,7 +38,7 @@ public partial class ImageSave : WslcCommand
     [SetsRequiredMembers]
     public ImageSave(IImageID image)
     {
-        this.Session = image.Session;
+        this.SessionID = image.SessionID;
         this.Image = image.ImageID;
     }
 

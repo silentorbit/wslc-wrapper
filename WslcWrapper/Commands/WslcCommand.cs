@@ -8,7 +8,7 @@ public abstract class WslcCommand
     /// <summary>
     /// wslc.exe --session MySession ...
     /// </summary>
-    public string? Session { get; set; }
+    public string? SessionID { get; set; }
 
     /// <summary>
     /// Shows help about the selected command
@@ -22,8 +22,8 @@ public abstract class WslcCommand
             format.Format ??= "json";
 
         var args = new List<string>();
-        if (Session != null)
-            args.AddRange("--session", Session);
+        if (SessionID != null)
+            args.AddRange("--session", SessionID);
 
         BuildArgs(args);
 

@@ -31,6 +31,18 @@ public partial class NetworkCreate : WslcCommand
     }
 
     /// <summary><![CDATA[
+    /// Creates a new network.
+    /// Usage: wslc network create [<options>] <network-name>
+    /// ]]></summary>
+    /// <param name="network">Network name</param>
+    [SetsRequiredMembers]
+    public NetworkCreate(INetworkID network)
+    {
+        this.SessionID = network.SessionID;
+        this.NetworkName = network.NetworkID;
+    }
+
+    /// <summary><![CDATA[
     /// Specify network driver name (default: bridge)
     /// --driver
     /// ]]></summary>

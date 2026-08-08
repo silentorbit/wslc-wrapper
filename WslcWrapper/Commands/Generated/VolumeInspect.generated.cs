@@ -38,7 +38,7 @@ public partial class VolumeInspect : WslcCommandJson<List<VolumeInspectItem>>
     [SetsRequiredMembers]
     public VolumeInspect(IVolumeID volume)
     {
-        this.Session = volume.Session;
+        this.SessionID = volume.SessionID;
         this.VolumeName = volume.VolumeID;
     }
 

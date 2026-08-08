@@ -41,13 +41,14 @@ public partial class NetworkDisconnect : WslcCommand
     /// Disconnects a container from an existing network.
     /// Usage: wslc network disconnect [<options>] <network-name> <container-id>
     /// ]]></summary>
-    /// <param name="network_name">Network name</param>
+    /// <param name="network">Network name</param>
     /// <param name="container">Container ID</param>
     [SetsRequiredMembers]
-    public NetworkDisconnect(string network_name, IContainerID container)
+    public NetworkDisconnect(INetworkID network, IContainerID container)
     {
-        this.NetworkName = network_name;
-        this.Session = container.Session;
+        this.SessionID = network.SessionID;
+        this.NetworkName = network.NetworkID;
+        this.SessionID = container.SessionID;
         this.ContainerID = container.ContainerID;
     }
 

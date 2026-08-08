@@ -9,5 +9,5 @@ public interface ISessionID
     /// <summary>
     /// The WSLC session where the item is located.
     /// </summary>
-    public string? Session { get; set; }
+    public string SessionID { get; set; }
 }

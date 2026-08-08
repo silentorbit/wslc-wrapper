@@ -38,7 +38,7 @@ public partial class ContainerLogs : WslcCommand
     [SetsRequiredMembers]
     public ContainerLogs(IContainerID container)
     {
-        this.Session = container.Session;
+        this.SessionID = container.SessionID;
         this.ContainerID = container.ContainerID;
     }
 

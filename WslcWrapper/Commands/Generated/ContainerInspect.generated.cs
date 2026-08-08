@@ -38,7 +38,7 @@ public partial class ContainerInspect : WslcCommandJson<List<ContainerInspectIte
     [SetsRequiredMembers]
     public ContainerInspect(IContainerID container)
     {
-        this.Session = container.Session;
+        this.SessionID = container.SessionID;
         this.ContainerID = container.ContainerID;
     }
 

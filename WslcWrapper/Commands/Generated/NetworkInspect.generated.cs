@@ -30,6 +30,18 @@ public partial class NetworkInspect : WslcCommandJson<List<NetworkInspectItem>>
         this.NetworkName = network_name;
     }
 
+    /// <summary><![CDATA[
+    /// Display detailed information on one or more networks.
+    /// Usage: wslc network inspect [<options>] <network-name>
+    /// ]]></summary>
+    /// <param name="network">Network name</param>
+    [SetsRequiredMembers]
+    public NetworkInspect(INetworkID network)
+    {
+        this.SessionID = network.SessionID;
+        this.NetworkName = network.NetworkID;
+    }
+
     /// <summary>
     /// Return arguments for wslc.exe
     /// </summary>

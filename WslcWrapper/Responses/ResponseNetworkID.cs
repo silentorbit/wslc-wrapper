@@ -1,8 +1,8 @@
 ﻿namespace SilentOrbit.WSLC.Responses;
 
-public class ResponseVolumeID(string id) : IVolumeID
+public class ResponseNetworkID(string id) : INetworkID
 {
     public string SessionID { get; set; } = null!;
 
-    public string VolumeID { get; } = id;
+    public string NetworkID { get; } = id;
 }

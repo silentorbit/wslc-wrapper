@@ -38,7 +38,7 @@ public partial class ImagePull : WslcCommand
     [SetsRequiredMembers]
     public ImagePull(IImageID image)
     {
-        this.Session = image.Session;
+        this.SessionID = image.SessionID;
         this.Image = image.ImageID;
     }
 

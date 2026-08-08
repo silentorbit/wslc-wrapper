@@ -38,7 +38,7 @@ public partial class ContainerKill : WslcCommand
     [SetsRequiredMembers]
     public ContainerKill(IContainerID container)
     {
-        this.Session = container.Session;
+        this.SessionID = container.SessionID;
         this.ContainerID = container.ContainerID;
     }
 

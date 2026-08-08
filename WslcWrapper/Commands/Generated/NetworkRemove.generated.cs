@@ -31,6 +31,18 @@ public partial class NetworkRemove : WslcCommand
     }
 
     /// <summary><![CDATA[
+    /// Removes one or more networks.
+    /// Usage: wslc network remove [<options>] <network-name>
+    /// ]]></summary>
+    /// <param name="network">Network name</param>
+    [SetsRequiredMembers]
+    public NetworkRemove(INetworkID network)
+    {
+        this.SessionID = network.SessionID;
+        this.NetworkName = network.NetworkID;
+    }
+
+    /// <summary><![CDATA[
     /// Do not error if the network does not exist
     /// --force
     /// ]]></summary>

@@ -54,7 +54,7 @@ public partial class ContainerCreate : WslcCommandString<IContainerID>
     [SetsRequiredMembers]
     public ContainerCreate(IImageID image, string? command = null, params IList<string>? arguments)
     {
-        this.Session = image.Session;
+        this.SessionID = image.SessionID;
         this.Image = image.ImageID;
         this.Command = command;
         this.Arguments = arguments;

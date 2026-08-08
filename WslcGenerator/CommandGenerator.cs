@@ -90,7 +90,7 @@ class CommandGenerator
         code.AppendLine();
         code.AppendSummary(cmd.Summary);
         code.AppendLine(@"[GeneratedCode(""WslcGenerator"", ""0.0.0.1"")]");
-        
+
         var baseType = GetBaseType(cmd);
         var formatInterface = (cmd.Options.Any(o => o.Key == "--format")) ? ", IFormatJson" : null;
         code.AppendLine($"public partial class {cmd.ClassName} : {baseType}{formatInterface}");
@@ -235,7 +235,7 @@ class CommandGenerator
                 case "IVolumeID":
                 case "IImageID":
                 case "INetworkID":
-                    code.AppendLine($"this.Session = {a.CtorParameterName}.Session;");
+                    code.AppendLine($"this.SessionID = {a.CtorParameterName}.SessionID;");
                     break;
             }
             code.AppendLine($"this.{a.PropertyName} = {a.CtorPropertyValue};");
@@ -249,7 +249,8 @@ class CommandGenerator
         var hasContainerId = args.Any(a => a.Key == "container-id");
         var hasImage = args.Any(a => a.Key == "image");
         var hasVolume = args.Any(a => a.Key == "volume-name");
-        if (!hasContainerId && !hasImage && !hasVolume)
+        var hasNetwork = args.Any(a => a.Key == "network-name");
+        if (!hasContainerId && !hasImage && !hasVolume && !hasNetwork)
             yield break;
 
         foreach (var a in args)
@@ -285,6 +286,17 @@ class CommandGenerator
                         CtorParameterName = "volume",
                         CtorParameterType = "IVolumeID",
                         CtorPropertyValue = "volume.VolumeID",
+                    };
+                    break;
+
+                case "network-name":
+                    yield return new Argument(a.Key, a.Summary)
+                    {
+                        PropertyType = a.PropertyType,
+                        PropertyName = a.PropertyName,
+                        CtorParameterName = "network",
+                        CtorParameterType = "INetworkID",
+                        CtorPropertyValue = "network.NetworkID",
                     };
                     break;
 

@@ -41,13 +41,14 @@ public partial class NetworkConnect : WslcCommand
     /// Connects a container to an existing network.
     /// Usage: wslc network connect [<options>] <network-name> <container-id>
     /// ]]></summary>
-    /// <param name="network_name">Network name</param>
+    /// <param name="network">Network name</param>
     /// <param name="container">Container ID</param>
     [SetsRequiredMembers]
-    public NetworkConnect(string network_name, IContainerID container)
+    public NetworkConnect(INetworkID network, IContainerID container)
     {
-        this.NetworkName = network_name;
-        this.Session = container.Session;
+        this.SessionID = network.SessionID;
+        this.NetworkName = network.NetworkID;
+        this.SessionID = container.SessionID;
         this.ContainerID = container.ContainerID;
     }
 

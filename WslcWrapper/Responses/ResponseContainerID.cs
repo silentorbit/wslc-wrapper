@@ -2,7 +2,7 @@
 
 public class ResponseContainerID(string id) : IContainerID
 {
-    public string? Session { get; set; }
+    public string SessionID { get; set; } = null!;
 
     public string ContainerID { get; } = id;
 }
