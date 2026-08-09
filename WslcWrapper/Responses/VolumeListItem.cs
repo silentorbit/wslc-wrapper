@@ -1,4 +1,4 @@
-﻿namespace SilentOrbit.WSLC.Data;
+﻿namespace SilentOrbit.WSLC.Responses;
 
 public class VolumeListItem : UnmappedJsonBase, IVolumeID
 {
@@ -6,7 +6,7 @@ public class VolumeListItem : UnmappedJsonBase, IVolumeID
     public required string Name { get; set; }
 
     [JsonIgnore]
-    string? ISessionID.SessionID { get; set; }
+    string ISessionID.SessionID { get; set; } = null!;
 
     [JsonIgnore]
     string IVolumeID.VolumeID => Name;

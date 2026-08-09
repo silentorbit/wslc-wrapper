@@ -8,7 +8,7 @@
 public class ContainerInspectItem : Docker.ContainerInspectResponse, IContainerID
 {
     [JsonIgnore]
-    string? ISessionID.SessionID { get; set; }
+    string ISessionID.SessionID { get; set; } = null!;
 
     [JsonIgnore]
     string IContainerID.ContainerID => Name ?? Id;
