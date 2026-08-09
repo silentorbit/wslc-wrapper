@@ -19,6 +19,7 @@
 		<RepositoryUrl>https://github.com/silentorbit/wslc-wrapper</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>icon.png</PackageIcon>
 
 		<!-- Generate the secondary symbol package -->
 		<IncludeSymbols>true</IncludeSymbols>
@@ -38,6 +39,7 @@
 
 	<ItemGroup>
 		<None Include="../README.md" Pack="true" PackagePath="\" />
+		<None Include="icon.png" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 	
 </Project>
