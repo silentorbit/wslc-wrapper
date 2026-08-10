@@ -16,9 +16,6 @@ internal class CommandData
     {
         get
         {
-            if (Command.Count == 0)
-                return "WslcVersion";
-
             return string.Concat(Command.Select(w => char.ToUpper(w[0]) + w.Substring(1)));
         }
     } 

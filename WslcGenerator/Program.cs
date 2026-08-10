@@ -13,10 +13,6 @@ class Program
 
     static void Scan(string[] args, CommandGenerator generator)
     {
-        //Skip alias
-        if (WslcAlias.IsAlias(args))
-            return;
-
         Console.WriteLine($"wslc.exe {string.Join(",", args)}");
         var output = WslcExe.Run([.. args, "-?"]);
         var cmd = Parser.Parse(args, output);
@@ -24,8 +20,11 @@ class Program
 
         if (cmd.Arguments.Count > 0 || cmd.Options.Count > 0 || cmd.SubCommands.Count == 0)
         {
-            var path = generator.Generate(cmd);
-            Console.WriteLine($"Saved: {path}");
+            if (generator.IsAlias(args) == false)
+            {
+                var path = generator.Generate(cmd);
+                Console.WriteLine($"Saved: {path}");
+            }
         }
 
         foreach (var sub in cmd.SubCommands)

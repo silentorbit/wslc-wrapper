@@ -29,6 +29,12 @@ class CommandGenerator
     /// </summary>
     public Dictionary<string, string> ReturnStringMap { get; set; } = [];
 
+    /// <summary>
+    /// Key "command"
+    /// Value "full sub command"
+    /// </summary>
+    public Dictionary<string, string> CommandAlias { get; set; } = [];
+
     #region Load/Save Config
 
     [JsonIgnore]
@@ -68,6 +74,13 @@ class CommandGenerator
     }
 
     #endregion Load/Save Config
+
+    public bool IsAlias(IEnumerable<string> args)
+    {
+        var cmd = string.Join(" ", args);
+        return CommandAlias.ContainsKey(cmd);
+    }
+
 
     internal FilePath Generate(CommandData cmd)
     {
