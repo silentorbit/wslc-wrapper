@@ -22,7 +22,7 @@ class Program
         var cmd = Parser.Parse(args, output);
         Console.WriteLine($"Parsed: {cmd}");
 
-        if (cmd.Arguments?.Count > 0 || cmd.Options?.Count > 0)
+        if (cmd.Arguments.Count > 0 || cmd.Options.Count > 0 || cmd.SubCommands.Count == 0)
         {
             var path = generator.Generate(cmd);
             Console.WriteLine($"Saved: {path}");
